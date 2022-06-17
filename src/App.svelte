@@ -1,8 +1,23 @@
 <script>
-    import {onMount} from 'svelte'
-    let temp = "jan karlsson"
-    onMount(() => {
-        console.log('started')
-    })
+  import Map from "./Map.svelte";
+  export let ready;
+  let apikey = 'AIzaSyA_u8plRTaYOY_v9bARZwhowD00cLqz-ag'
 </script>
-<p>this is the app {temp}</p>
+
+<svelte:head>
+  <script
+    defer
+    async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_u8plRTaYOY_v9bARZwhowD00cLqz-ag&callback=initMap">
+  </script>
+</svelte:head>
+
+{#if ready}
+  <Map />
+{/if}
+
+<style>
+  :global(body) {
+    padding: 0;
+  }
+</style>
