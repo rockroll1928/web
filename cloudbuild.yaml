@@ -1,13 +1,4 @@
 steps:
-  - id: "tf-init"
-    name: "hashicorp/terraform"
-    dir: "deployment/resources/dev"
-    args: [ 'init' ]
-
-  - id: "tf-apply"
-    name: "hashicorp/terraform"
-    dir: "deployment/resources/dev"
-    args: ['apply', '-auto-approve']
 
   - name: node:16
     entrypoint: yarn
