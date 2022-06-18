@@ -1,25 +1,16 @@
-<!-- <script>
+<script>
+  import { getParking } from "./getParking";
   import { onMount } from "svelte";
-
   export let data = [];
-
-  onMount(() => {
-    fetch(
-      "https://europe-west1-bootcamp222.cloudfunctions.net/stops-service/getParking"
-    ).then((response) => {
-      data. = response.json();
-
-      console.log(data);
-    });
+  onMount(async function () {
+    const response = await getParking();
+    data = response;
+    console.log(response);
   });
 </script>
 
-<div>
-  <ul>
-    {#each data as pspace}
-      <li>
-        {pspace}
-      </li>
-    {/each}
-  </ul>
-</div> -->
+{#each data as pspace, i}
+  <li>
+    {i + 1}: {pspace.label}
+  </li>
+{/each}
