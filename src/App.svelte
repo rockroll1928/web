@@ -3,6 +3,7 @@
   import ParkingButton from "./components/STOPP/MenuButton/ParkingButton/ParkingButton.svelte";
   import ParkingList from "../src/components/ParkingList/ParkingList.svelte";
   import MenuButton from "./components/STOPP/MenuButton/MenuButton.svelte";
+  import Drawer from "./components/STOPP/Drawer/Drawer.svelte";
   import Modal from "./components/STOPP/MenuButton/ParkingButton/Modal.svelte";
   import RestroomButton from "./components/STOPP/RestroomButton/RestroomButton.svelte";
   import StopptoggleButton from "./components/STOPP/StopptoggleButton/StopptoggleButton.svelte";
@@ -26,4 +27,5 @@
   <RestroomButton />
   <StopptoggleButton />
   <MenuButton />
+  <Drawer />
 {/if}
