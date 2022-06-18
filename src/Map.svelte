@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import InfoService from "./services/InfoService";
   import MenuButton from "./components/MAP/MenuButton/MenuButton.svelte";
-  
+  import {translateIcon} from "./utility/IconMapping";
   import { currentLocation } from "./components/Store/Stores.js";
 
   const infoService = new InfoService();
@@ -67,13 +67,13 @@
     };
   });
 
-  const getRelevantPins = () => {
-    infoService.getPinList(center).then((pins) => {
+  const getRelevantPins = (pos) => {
+    infoService.getPinList(pos).then((pins) => {
       console.log(pins);
       relevantPins = pins.map((pin) => {
         new google.maps.Marker({
           position: new google.maps.LatLng(pin.lat, pin.lon),
-          icon: `./assets/pins/${pin.type || 'message'}.svg`,
+          icon: `./assets/pins/${translateIcon(pin.iconType)}.svg`,
           map: map
         });
       })
