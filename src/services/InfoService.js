@@ -5,8 +5,8 @@ const ENDPOINT_URL =
 
 const InfoService = function (service = new Service(ENDPOINT_URL)) {
   const _service = service;
-  InfoService.prototype.getPins = function () {
-    return _service.fetch();
+  InfoService.prototype.getPinList = function (lat, lon) {
+    return _service.fetch("/", {lat: lat, lon: lon});
   };
 };
 
