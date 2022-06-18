@@ -1,12 +1,9 @@
 const Service = require("./Service");
 
-const ENDPOINT_URL =
-  "https://europe-west1-bootcamp222.cloudfunctions.net/info-service";
-
-const InfoService = function (service = new Service(ENDPOINT_URL)) {
-  const _service = service;
+const InfoService = function (service = new Service()) {
+	const _service = service;
   InfoService.prototype.getPinList = function (location) {
-    return _service.fetch("/", location);
+    return _service.get("https://europe-west1-bootcamp222.cloudfunctions.net/info-service", location);
   };
 };
 
