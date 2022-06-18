@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@types/google.maps": "^3.49.2",
     "svelte": "^3.48.0"
   },
   "scripts": {

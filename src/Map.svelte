@@ -5,6 +5,9 @@
 
   const infoService = new InfoService();
   let container;
+  /**
+   * @type {google.maps.Map}
+   */
   let map;
   let zoom = 15;
   let center;
@@ -22,6 +25,7 @@
         map: map,
         title: "Hello World!",
       });
+      getRelevantPins(pos);
     });
     google.maps.event.addListener(map, "click", function (event) {
       currentLocation.update(() => ({
@@ -47,6 +51,10 @@
       }
     };
   });
+
+  const getRelevantPins = () => {
+    infoService.getPinList(center).then(console.log);
+  };
 </script>
 
 <div class="full-screen" bind:this={container} />
