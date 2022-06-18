@@ -19,6 +19,6 @@
     cursor: pointer;
   }
   img{
-    width: clamp(10px, 20vw, 50px);
+    width: clamp(10px, 20vw, 75px);
   }
 </style>
