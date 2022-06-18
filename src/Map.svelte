@@ -28,7 +28,7 @@
     map = new google.maps.Map(container, {
       zoom,
       disableDefaultUI: true,
-      scrollwheel: false,
+      // scrollwheel: false,
       styles: [
         {
           featureType: "poi",
