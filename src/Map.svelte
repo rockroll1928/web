@@ -158,7 +158,7 @@
   const getRelevantPins = (pos) => {
 		Promise.all([
 			infoService.getPinList(pos),
-			pinService.getPinList()
+			Promise.resolve([])//pinService.getPinList()
 		]).then(([infoPinList, ugcPinList]) => {
 			relevantPins = infoPinList.map((pin) => createMapMarker(pin, 'info')).concat(ugcPinList.map((pin) => createMapMarker(pin, 'pin')));
 		});
@@ -173,7 +173,7 @@ onMount( () => {
 </script>
 
 <div class="clock">
-  {hour} : {minute}
+  {hour}:{minute}
 </div>
 
 <div class="full-screen" bind:this={container} />
@@ -235,5 +235,12 @@ onMount( () => {
     z-index: 2;
     position: fixed;
     align-items: center;
-  }
+		font-family: monospace;
+		background-color: white;
+		font-size: 1.7981375rem;
+		padding: 1.1875rem 1.8125rem;
+		border-radius: calc(1.7981375rem + 1.1875rem);
+		right: 0;
+		margin: 1.5rem;
+	}
 </style>
