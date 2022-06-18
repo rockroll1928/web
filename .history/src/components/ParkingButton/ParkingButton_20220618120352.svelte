@@ -12,7 +12,7 @@
     z-index: 2;
     border-radius: 50%;
     top: 50%;
-    padding: 3rem;
+    padding: 5rem;
     background-color: blue;
     color: white;
     font-size: 2rem;
