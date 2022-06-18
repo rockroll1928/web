@@ -1,6 +1,6 @@
 const IconMapping = function() {};
 
-IconMapping.prototype.translateIcon = function(iconType) {
+IconMapping.translateIcon = function(iconType) {
 	switch (iconType) {
 		case 'roadAccident':
 		case 'emergencyInformation':
