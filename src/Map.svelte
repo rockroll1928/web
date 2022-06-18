@@ -14,14 +14,19 @@
    */
   let map;
   let zoom = 15;
-  let center = currentLocation;
+  let id;
+  let centerMarker;
+  let options = {
+    enableHighAccuracy: false,
+    timeout: 5000,
+    maximumAge: 0,
+  };
   let relevantPins = [];
   $: isStopsOpen = false;
 
   onMount(async () => {
     map = new google.maps.Map(container, {
       zoom,
-      center,
       disableDefaultUI: true,
       scrollwheel: false,
       styles: [
@@ -36,19 +41,76 @@
     currentLocation.subscribe((pos) => {
       console.log("pos", pos);
       map.panTo(pos);
-      let myMarker = new google.maps.Marker({
+      centerMarker?.setMap(null);
+      centerMarker = new google.maps.Marker({
         position: pos,
         map: map,
         title: "Hello World!",
       });
       getRelevantPins(pos);
     });
+    const navGeoLocSuccess = (pos) => {
+      const crd = pos.coords;
+      currentLocation.update(() => ({
+        lat: crd.latitude,
+        lng: crd.longitude,
+      }));
+    };
+
+    function navGeoLocError(err) {
+      console.warn("ERROR(" + err.code + "): " + err.message);
+    }
+
+    id = navigator.geolocation.watchPosition(
+      navGeoLocSuccess,
+      navGeoLocError,
+      options
+    );
+
+    document.onkeydown = (event) => {
+      console.log("key", event.key);
+      switch (event.key) {
+        case "ArrowUp":
+          navigator.geolocation.clearWatch(id);
+          let _pos;
+          currentLocation.subscribe((pos) => {
+            _pos = pos;
+          });
+          currentLocation.update(() => ({
+            lat: _pos.lat + 0.001,
+            lng: _pos.lng,
+          }));
+
+          break;
+
+        default:
+          break;
+      }
+    };
+
+    document.onkeyup = (event) => {
+      switch (event.key) {
+        case "ArrowUp":
+          id = navigator.geolocation.watchPosition(
+            navGeoLocSuccess,
+            navGeoLocError,
+            options
+          );
+
+          break;
+
+        default:
+          break;
+      }
+    };
+    /*
     google.maps.event.addListener(map, "click", function (event) {
       currentLocation.update(() => ({
         lat: event.latLng.lat(),
         lng: event.latLng.lng(),
       }));
     });
+
     const getCurrentPosition = () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -66,6 +128,7 @@
         );
       }
     };
+*/
   });
 
   const getRelevantPins = (pos) => {

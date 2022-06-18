@@ -2,8 +2,8 @@
   import { createEventDispatcher } from "svelte";
   import Drawer from "svelte-drawer-component";
   import RestroomButton from "../RestroomButton/RestroomButton.svelte";
-  import StopptoggleButton from "../StopptoggleButton/StopptoggleButton.svelte";
 
+  import Card from "./Card.svelte";
   export let open = false;
   const dispatch = createEventDispatcher();
 </script>
@@ -17,6 +17,11 @@
   <div class="content">
     <RestroomButton />
   </div>
+  placement="left" on:clickAway={() => dispatch("on-drawer-close")}>
+  <Card title={"Bensin station"} body={"10-15 minuter"} />
+  <Card title={"Toalett station"} body={"20 minuter stress"} />
+  <Card title={"Mat station"} body={"äda maud"} />
+  <Card title={"Ricks station"} body={"Never gonna give you up"} />
 </Drawer>
 
 <style>

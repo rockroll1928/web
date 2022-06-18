@@ -1,6 +1,6 @@
 const IconMapping = function() {};
 
-IconMapping.prototype.translateIcon = function(iconType) {
+IconMapping.translateIcon = function(iconType) {
 	switch (iconType) {
 		case 'roadAccident':
 		case 'emergencyInformation':
@@ -14,7 +14,7 @@ IconMapping.prototype.translateIcon = function(iconType) {
 		case 'roadwork':
 		case 'roadworkPlanned': 
 			return 'roadwork';
-		default: return 'undefined';
+		default: return 'message';
 	}
 }
 module.exports = IconMapping;
