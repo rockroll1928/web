@@ -7,6 +7,7 @@
 
   import Card from "./Card.svelte";
   import Locations from "./Locations.svelte";
+  import GasstationButton from "../GasstationButton/GasstationButton.svelte";
   export let open = false;
   const dispatch = createEventDispatcher();
 </script>
@@ -20,6 +21,7 @@
   <div class="content">
     <RestroomButton />
     <ParkingButton />
+    <GasstationButton />
   </div>
 </Drawer>
 
