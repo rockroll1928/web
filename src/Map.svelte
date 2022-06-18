@@ -15,9 +15,30 @@
     });
   });
 
-  $: infoService.get();
+  const getCurrentPosition = () => {
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          console.log(pos);
+          map.setCenter(pos);
+        },
+        () => {
+          handleLocationError(true, infoWindow, map.getCenter());
+        }
+      );
+    } else {
+      // Browser doesn't support Geolocation
+    }
+  }
+
 </script>
 
+<button on:click={getCurrentPosition}>get location test</button>
 <div class="full-screen" bind:this={container} />
 
 <style>
