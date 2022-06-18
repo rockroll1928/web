@@ -14,7 +14,7 @@ IconMapping.translateIcon = function(iconType) {
 		case 'roadwork':
 		case 'roadworkPlanned': 
 			return 'roadwork';
-		default: return 'undefined';
+		default: return 'message';
 	}
 }
 module.exports = IconMapping;
