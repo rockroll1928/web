@@ -5,6 +5,7 @@
   import MenuButton from "../src/components/MenuButton/MenuButton.svelte";
   import Modal from "./components/ParkingButton/Modal.svelte";
   import RestroomButton from "./components/RestroomButton/RestroomButton.svelte";
+  import StopptoggleButton from "./components/StopptoggleButton/StopptoggleButton.svelte";
   export let ready;
   let text = "P";
   $: isOpen = false;
@@ -23,5 +24,6 @@
   <ParkingButton {text} on:open-parking-button={() => (isOpen = true)} />
   <Modal on:request-close={() => (isOpen = false)} {isOpen} />
   <RestroomButton />
+  <StopptoggleButton />
   <MenuButton />
 {/if}
