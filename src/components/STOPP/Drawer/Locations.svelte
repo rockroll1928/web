@@ -2,7 +2,7 @@
   import { createEventDispatcher, onMount } from "svelte";
   import { getParking } from "../../ParkingList/getParking";
   import SingleLocation from "../SingleLocation.svelte";
-  export let open = false;
+  export let open = true;
   $: locations = [];
   const disableDefaultUI = createEventDispatcher();
 
