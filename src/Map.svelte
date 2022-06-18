@@ -13,6 +13,7 @@
       center,
     });
     createButtons();
+    getRelevantPins();
   });
 
   const getCurrentPosition = () => {
@@ -34,6 +35,10 @@
       // Browser doesn't support Geolocation
     }
   };
+
+  const getRelevantPins = () => {
+    infoService.getPinList(center).then(console.log);
+  }
 
   const createButtons = () => {
     const locationButton = document.createElement("button");
