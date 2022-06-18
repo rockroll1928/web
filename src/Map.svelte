@@ -1,14 +1,11 @@
 <script>
-<<<<<<< HEAD
-  import InfoService from './services/InfoService';
-  const infoService = new InfoService();  let container;
-=======
+  import InfoService from "./services/InfoService";
+  const infoService = new InfoService();
   let container;
->>>>>>> e4d68a0f696e54bbe4a7d7f37fdd5252c02d1706
   let map;
   let zoom = 12;
   let center = { lat: 57.696639517983165, lng: 11.828236342523105 };
-  
+
   import { onMount } from "svelte";
 
   onMount(async () => {
@@ -20,7 +17,6 @@
   });
 
   const getCurrentPosition = () => {
-
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -38,7 +34,7 @@
     } else {
       // Browser doesn't support Geolocation
     }
-  }
+  };
 
   const createButtons = () => {
     const locationButton = document.createElement("button");
@@ -48,10 +44,8 @@
 
     const searchButton = document.createElement("button");
 
-
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-  }
-
+  };
 </script>
 
 <div class="full-screen" bind:this={container} />

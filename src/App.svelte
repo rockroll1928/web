@@ -17,4 +17,5 @@
 {#if ready}
   <Map />
   <ParkingButton {text} />
+  <ParkingList />
 {/if}
