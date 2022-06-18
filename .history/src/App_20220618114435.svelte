@@ -1,8 +1,8 @@
 <script>
   import Map from "./Map.svelte";
-  import ParkingButton from "../src/components/ParkingButton/ParkingButton.svelte";
+  import ParkingButton from "./components/ParkingButton";
   export let ready;
-  let text = "P";
+  let text = "Parking Button";
 </script>
 
 <svelte:head>

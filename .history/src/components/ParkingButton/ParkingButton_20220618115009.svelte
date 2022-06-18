@@ -8,7 +8,6 @@
   button {
     display: absolute;
     z-index: 2;
-    border-radius: 50%;
-    top: 50%;
+    borderradius: 50%;
   }
 </style>

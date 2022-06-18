@@ -1,8 +1,6 @@
 <script>
   import Map from "./Map.svelte";
-  import ParkingButton from "../src/components/ParkingButton/ParkingButton.svelte";
   export let ready;
-  let text = "P";
 </script>
 
 <svelte:head>
@@ -15,5 +13,4 @@
 
 {#if ready}
   <Map />
-  <ParkingButton {text} />
 {/if}
