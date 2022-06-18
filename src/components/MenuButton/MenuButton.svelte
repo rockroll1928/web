@@ -35,7 +35,7 @@
     position: absolute;
     z-index: 2;
     border-radius: 10%;
-    top: 30%;
+    top: 60%;
     right: 5%;
     padding: 1rem;
     background-color: white;
