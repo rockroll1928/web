@@ -6,7 +6,7 @@
   import { translateIcon } from "./utility/IconMapping";
   import Drawer from "./components/STOPP/Drawer/Drawer.svelte";
   import openModal from "./components/INFO/InfoOverlay.svelte";
-
+	import { format, formatDistance, formatRelative, subDays } from 'date-fns'
   import { currentLocation } from "./components/Store/Stores.js";
 
   const infoService = new InfoService();
@@ -26,9 +26,8 @@
   };
   let relevantPins = [];
   $: isStopsOpen = false;
-  let date = new Date();
-  $: hour = date.getHours();
-  $: minute = date.getMinutes();
+	let date = new Date();
+	$: time = format(date, "HH:mm")
 
   const infowindow = new google.maps.InfoWindow({});
   onMount(async () => {
@@ -173,7 +172,7 @@ onMount( () => {
 </script>
 
 <div class="clock">
-  {hour}:{minute}
+	{time}
 </div>
 
 <div class="full-screen" bind:this={container} />
