@@ -1,37 +1,37 @@
 <script>
   import { createEventDispatcher } from "svelte";
+  import ParkingList from "../ParkingList/ParkingList.svelte";
   let dispatch = createEventDispatcher();
-export let isOpen = false;
+  export let isOpen = false;
 </script>
 
-
-
 {#if isOpen}
-<div class="wrapper" on:click={() => dispatch("request-close")}>
+  <div class="wrapper" on:click={() => dispatch("request-close")}>
     <div class="modal" on:click={(e) => e.stopPropagation()}>
-<slot />
+      <ParkingList />
+      <slot />
     </div>
-</div>
+  </div>
 {/if}
 
 <style>
-    .wrapper{
-        z-index: 9998;
-        position: absolute;
-        left:0;
-        top:0;
-        display:flex;
-        height: 100vh;
-        width: 100vw;
-        justify-content: center;
-        align-items: center;
-        background-color: rgba(0,0,0,.3);
-    }
+  .wrapper {
+    z-index: 9998;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
 
-    .modal{
-        z-index: 9999;
-        height: 80vh;
-        width: 80vw;
-        background-color: rgba(255,255,255,.95);
-    }
+  .modal {
+    z-index: 9999;
+    height: 80vh;
+    width: 80vw;
+    background-color: rgba(255, 255, 255, 0.95);
+  }
 </style>

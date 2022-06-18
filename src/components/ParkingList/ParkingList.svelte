@@ -1,25 +1,20 @@
-<!-- <script>
-  import { onMount } from "svelte";
-
-  export let data = [];
-
-  onMount(() => {
-    fetch(
-      "https://europe-west1-bootcamp222.cloudfunctions.net/stops-service/getParking"
-    ).then((response) => {
-      data. = response.json();
-
-      console.log(data);
-    });
-  });
+<script>
+  let data = [
+    {
+      label: "Parkering Göteborg (4752) - Adolf Edelsvärds gata",
+      lat: 57.69409134514198,
+      lng: 11.912355419517533,
+    },
+    {
+      label: "Liseberg östra parkering",
+      lat: 57.69141004347778,
+      lng: 11.996197752418537,
+    },
+  ];
 </script>
 
-<div>
-  <ul>
-    {#each data as pspace}
-      <li>
-        {pspace}
-      </li>
-    {/each}
-  </ul>
-</div> -->
+{#each data as pspace, i}
+  <li>
+    {i + 1}: {pspace.label}
+  </li>
+{/each}
