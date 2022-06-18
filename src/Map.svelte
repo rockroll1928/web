@@ -1,4 +1,6 @@
 <script>
+  import InfoService from './services/InfoService';
+  const infoService = new InfoService();
   let container;
   let map;
   let zoom = 12;
@@ -12,6 +14,8 @@
       center,
     });
   });
+
+  $: infoService.get();
 </script>
 
 <div class="full-screen" bind:this={container} />
