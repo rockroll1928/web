@@ -27,6 +27,7 @@
   let relevantPins = [];
   $: isStopsOpen = false;
 
+  const infowindow = new google.maps.InfoWindow({});
   onMount(async () => {
     map = new google.maps.Map(container, {
       zoom,
@@ -117,6 +118,18 @@
 		marker._source = source;
 		marker._pin = pin;
 		// add click listener here.
+
+    const h1 = document.createElement('h1');
+    h1.textContent = "Hej";
+
+    marker.addListener('click', () => {
+      infowindow.setContent(h1);
+      infowindow.open({
+        anchor: marker,
+        map,
+      });
+    });
+
 		return marker;
 	}
 
