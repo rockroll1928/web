@@ -2,7 +2,8 @@
   import { onMount } from "svelte";
   import InfoService from "./services/InfoService";
   import MenuButton from "./components/MAP/MenuButton/MenuButton.svelte";
-  
+  import Drawer from "./components/STOPP/Drawer/Drawer.svelte";
+
   import { currentLocation } from "./components/Store/Stores.js";
 
   const infoService = new InfoService();
@@ -14,6 +15,7 @@
   let zoom = 15;
   let center = currentLocation;
   let relevantPins = [];
+  $: isStopsOpen = false;
 
   onMount(async () => {
     map = new google.maps.Map(container, {
@@ -21,15 +23,13 @@
       center,
       disableDefaultUI: true,
       scrollwheel: false,
-			styles: [
-				{
-					featureType: "poi",
-					elementType: "labels",
-					stylers: [
-              { visibility: "off" }
-					]
-				}
-			]
+      styles: [
+        {
+          featureType: "poi",
+          elementType: "labels",
+          stylers: [{ visibility: "off" }],
+        },
+      ],
     });
 
     currentLocation.subscribe((pos) => {
@@ -73,23 +73,31 @@
       relevantPins = pins.map((pin) => {
         new google.maps.Marker({
           position: new google.maps.LatLng(pin.lat, pin.lon),
-          icon: `./assets/pins/${pin.type || 'message'}.svg`,
-          map: map
+          icon: `./assets/pins/${pin.type || "message"}.svg`,
+          map: map,
         });
-      })
+      });
     });
-  }
-
+  };
 </script>
 
 <div class="full-screen" bind:this={container} />
 <div class="menu-buttons">
-  <MenuButton alt="search" src="/assets/Search.svg" on:menu-button-click={() => {}} />
+  <MenuButton
+    alt="search"
+    src="/assets/Search.svg"
+    on:menu-button-click={() => {}}
+  />
   <MenuButton alt="pin" src="/assets/Pin.svg" on:menu-button-click={() => {}} />
-  <MenuButton alt="coffee" src="/assets/Coffee.svg" on:menu-button-click={() => {}} />
-
+  <MenuButton
+    alt="coffee"
+    src="/assets/Coffee.svg"
+    on:menu-button-click={() => {
+      isStopsOpen = true;
+    }}
+  />
 </div>
-
+<Drawer open={isStopsOpen} />
 
 <style>
   .full-screen {
@@ -100,7 +108,7 @@
   .menu-buttons {
     z-index: 2;
     position: absolute;
-    left:50%;
+    left: 50%;
     transform: translateX(-50%);
     bottom: 5%;
   }

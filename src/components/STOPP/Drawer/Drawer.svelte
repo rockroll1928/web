@@ -1,6 +1,6 @@
 <script>
   import Drawer from "svelte-drawer-component";
-  let open = false;
+  export let open = false;
 </script>
 
 <Drawer {open} size="50%" placement="left" on:clickAway={() => (open = false)}>
@@ -9,8 +9,6 @@
   <img src="https://picsum.photos/200?random=2" alt="In drawer" />
   <img src="https://picsum.photos/200?random=3" alt="In drawer" />
 </Drawer>
-
-<button on:click={() => (open = true)}>Open</button>
 
 <style>
   .panel {
