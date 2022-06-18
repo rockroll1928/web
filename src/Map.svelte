@@ -20,7 +20,16 @@
       zoom,
       center,
       disableDefaultUI: true,
-      scrollwheel: false
+      scrollwheel: false,
+			styles: [
+				{
+					featureType: "poi",
+					elementType: "labels",
+					stylers: [
+              { visibility: "off" }
+					]
+				}
+			]
     });
 
     currentLocation.subscribe((pos) => {
