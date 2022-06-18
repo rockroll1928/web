@@ -1,9 +1,13 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import Drawer from "svelte-drawer-component";
+
   import RestroomButton from "../RestroomButton/RestroomButton.svelte";
+  import ParkingButton from "../ParkingButton/ParkingButton.svelte";
 
   import Card from "./Card.svelte";
+  import Locations from "./Locations.svelte";
+  import GasstationButton from "../GasstationButton/GasstationButton.svelte";
   export let open = false;
   const dispatch = createEventDispatcher();
 </script>
@@ -16,15 +20,12 @@
 >
   <div class="content">
     <RestroomButton />
-  </div>
-
-  <div class="items">
-    <Card title={"Bensin station"} body={"10-15 minuter"} />
-    <Card title={"Toalett station"} body={"20 minuter stress"} />
-    <Card title={"Mat station"} body={"äda maud"} />
-    <Card title={"Ricks station"} body={"Never gonna give you up"} />
+    <ParkingButton />
+    <GasstationButton />
   </div>
 </Drawer>
+
+<Locations {open} on:clickAway={() => dispatch("on-drawer-close")} />
 
 <style>
   :global(.drawer .overlay) {
@@ -33,6 +34,7 @@
 
   :global(.drawer .panel) {
     background: transparent !important;
+    width: unset !important;
   }
   .close {
     display: block;
@@ -53,6 +55,10 @@
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
+    width: fit-content;
+    justify-content: -end;
+    padding: 3rem;
+    gap: 1rem;
   }
 
   .items {
@@ -65,7 +71,5 @@
     justify-content: center;
     right: 50%;
     left: 50%;
-    min-width: 50vW;
-    
   }
 </style>
