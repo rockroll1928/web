@@ -1,7 +1,6 @@
 <script>
   import Map from "./Map.svelte";
   export let ready;
-  let apikey = 'AIzaSyA_u8plRTaYOY_v9bARZwhowD00cLqz-ag'
 </script>
 
 <svelte:head>
@@ -15,9 +14,3 @@
 {#if ready}
   <Map />
 {/if}
-
-<style>
-  :global(body) {
-    padding: 0;
-  }
-</style>
