@@ -3,7 +3,7 @@
   import ParkingButton from "../src/components/ParkingButton/ParkingButton.svelte";
   import ParkingList from "../src/components/ParkingList/ParkingList.svelte";
   import MenuButton from "../src/components/MenuButton/MenuButton.svelte";
-import ParkingModal from "./components/ParkingButton/ParkingModal.svelte";
+import Modal from "./components/ParkingButton/Modal.svelte";
   export let ready;
   let text = "P";
   $:isOpen = false;
@@ -20,6 +20,6 @@ import ParkingModal from "./components/ParkingButton/ParkingModal.svelte";
 {#if ready}
   <Map />
   <ParkingButton {text} on:open-parking-button={() => isOpen = true}/>
-  <ParkingModal on:request-close={() => isOpen=false} {isOpen}/>
+  <Modal on:request-close={() => isOpen=false} {isOpen}></Modal>
   <MenuButton />
 {/if}

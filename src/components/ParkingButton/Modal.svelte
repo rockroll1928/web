@@ -9,7 +9,7 @@ export let isOpen = false;
 {#if isOpen}
 <div class="wrapper" on:click={() => dispatch("request-close")}>
     <div class="modal">
-
+<slot />
     </div>
 </div>
 {/if}
