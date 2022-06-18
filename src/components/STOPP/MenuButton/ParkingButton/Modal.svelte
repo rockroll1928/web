@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  import ParkingList from "../ParkingList/ParkingList.svelte";
+  import ParkingList from "../../../ParkingList/ParkingList.svelte";
   let dispatch = createEventDispatcher();
   export let isOpen = false;
 </script>
