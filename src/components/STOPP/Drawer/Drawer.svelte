@@ -19,7 +19,7 @@
   on:clickAway={() => dispatch("on-drawer-close")}
 >
   <div class="content">
-    <RestroomButton />
+    <RestroomButton on:click={() => dispatch("on-parking-open")} />
     <ParkingButton />
     <GasstationButton />
   </div>
