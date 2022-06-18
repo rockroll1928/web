@@ -13,6 +13,12 @@
 <button on:click={() => (open = true)}>Open</button>
 
 <style>
+  .panel {
+    background-color: transparent;
+  }
+  .overlay {
+    background-color: unset;
+  }
   .close {
     display: block;
     margin-left: auto;

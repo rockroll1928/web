@@ -1,6 +1,8 @@
 <script>
   import { onMount } from "svelte";
   import InfoService from "./services/InfoService";
+  import MenuButton from "./components/MAP/MenuButton/MenuButton.svelte";
+  
   import { currentLocation } from "./components/Store/Stores.js";
 
   const infoService = new InfoService();
@@ -10,11 +12,15 @@
    */
   let map;
   let zoom = 15;
-  let center;
+  let center = currentLocation;
+  let relevantPins = [];
 
   onMount(async () => {
     map = new google.maps.Map(container, {
       zoom,
+      center,
+      disableDefaultUI: true,
+      scrollwheel: false
     });
 
     currentLocation.subscribe((pos) => {
@@ -53,15 +59,40 @@
   });
 
   const getRelevantPins = () => {
-    infoService.getPinList(center).then(console.log);
-  };
+    infoService.getPinList(center).then((pins) => {
+      console.log(pins);
+      relevantPins = pins.map((pin) => {
+        new google.maps.Marker({
+          position: new google.maps.LatLng(pin.lat, pin.lon),
+          icon: `./assets/pins/${pin.type || 'message'}.svg`,
+          map: map
+        });
+      })
+    });
+  }
+
 </script>
 
 <div class="full-screen" bind:this={container} />
+<div class="menu-buttons">
+  <MenuButton alt="search" src="/assets/Search.svg" on:menu-button-click={() => {}} />
+  <MenuButton alt="pin" src="/assets/Pin.svg" on:menu-button-click={() => {}} />
+  <MenuButton alt="coffee" src="/assets/Coffee.svg" on:menu-button-click={() => {}} />
+
+</div>
+
 
 <style>
   .full-screen {
     width: 100vw;
     height: 100vh;
+  }
+
+  .menu-buttons {
+    z-index: 2;
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%);
+    bottom: 5%;
   }
 </style>

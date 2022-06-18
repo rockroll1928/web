@@ -8,8 +8,6 @@
   import RestroomButton from "./components/STOPP/RestroomButton/RestroomButton.svelte";
   import StopptoggleButton from "./components/STOPP/StopptoggleButton/StopptoggleButton.svelte";
   export let ready;
-  let text = "P";
-  $: isOpen = false;
 </script>
 
 <svelte:head>
