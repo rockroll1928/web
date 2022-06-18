@@ -140,6 +140,7 @@
       icon: `./assets/pins/${translateIcon(pin.iconType)}.svg`,
 			map: map
 		});
+		marker._source = source;
 		// add click listener here.
 		return marker;
 	}
