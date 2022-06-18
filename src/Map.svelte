@@ -6,7 +6,7 @@
   import { translateIcon } from "./utility/IconMapping";
   import Drawer from "./components/STOPP/Drawer/Drawer.svelte";
   import InfoContent, {contentString} from "./components/INFO/InfoContent.svelte";
-
+	import { format, formatDistance, formatRelative, subDays } from 'date-fns'
   import { currentLocation } from "./components/Store/Stores.js";
 
   const infoService = new InfoService();
@@ -26,6 +26,8 @@
   };
   let relevantPins = [];
   $: isStopsOpen = false;
+	let date = new Date();
+	$: time = format(date, "HH:mm")
 
   onMount(async () => {
     map = new google.maps.Map(container, {
@@ -159,7 +161,18 @@
 			relevantPins = infoPinList.map((pin) => createMapMarker(pin, 'info')).concat(ugcPinList.map((pin) => createMapMarker(pin, 'pin')));
 		});
   };
+
+onMount( () => {
+  const interval = setInterval(() => {
+    date = new Date();
+  }, 1000);
+});
+
 </script>
+
+<div class="clock">
+	{time}
+</div>
 
 <div class="full-screen" bind:this={container} />
 <div class="lower-left-buttons">
@@ -216,4 +229,16 @@
     transform: translateX(-50%);
     bottom: 30px;
   }
+  .clock {
+    z-index: 2;
+    position: fixed;
+    align-items: center;
+		font-family: monospace;
+		background-color: white;
+		font-size: 1.7981375rem;
+		padding: 1.1875rem 1.8125rem;
+		border-radius: calc(1.7981375rem + 1.1875rem);
+		right: 0;
+		margin: 1.5rem;
+	}
 </style>

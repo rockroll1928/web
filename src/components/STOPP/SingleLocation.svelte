@@ -5,21 +5,24 @@
 {#if location}
   <div class="location">
     <h2>{location.label}</h2>
+    <h2>{location.photos}</h2>
     this is a single location
     <!-- <pre>{JSON.stringify(location, null, 2)}</pre> -->
   </div>
 {/if}
 
-
 <style>
-    .location{
-        background-color: white;
-        padding: 1rem;
-        border-radius: .25rem;
-        width: 13rem;
-        height: 16rem;
-    }
-    .location h2 {
-        font-size: 16px;
-    }
+  .location {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    width: 13rem;
+    height: 10rem;
+    min-width: 11rem;
+    cursor: pointer;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+  }
+  .location h2 {
+    font-size: 16px;
+  }
 </style>

@@ -9,7 +9,12 @@
   import Locations from "./Locations.svelte";
   import GasstationButton from "../GasstationButton/GasstationButton.svelte";
   export let open = false;
+  export let openParkingButton = false;
   const dispatch = createEventDispatcher();
+  const openP = () => {
+    openParkingButton = true;
+    console.log(openParkingButton);
+  };
 </script>
 
 <Drawer
@@ -20,12 +25,17 @@
 >
   <div class="content">
     <RestroomButton />
-    <ParkingButton />
+    <div on:click={openP}>
+      <ParkingButton />
+    </div>
     <GasstationButton />
   </div>
-</Drawer>
 
-<Locations {open} on:clickAway={() => dispatch("on-drawer-close")} />
+  <Locations
+    open={openParkingButton}
+    on:clickAway={() => dispatch("on-drawer-close")}
+  />
+</Drawer>
 
 <style>
   :global(.drawer .overlay) {

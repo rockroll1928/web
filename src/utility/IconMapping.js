@@ -14,7 +14,11 @@ IconMapping.translateIcon = function(iconType) {
 		case 'roadwork':
 		case 'roadworkPlanned': 
 			return 'roadwork';
-		case 'police': return 'police';
+		case 'police':
+			return 'police';
+		case 'ferryDepartureOnSchedule':
+		case 'ferryServiceNotOperating':
+			return 'ferry';
 		default: return 'message';
 	}
 }

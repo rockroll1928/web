@@ -2,12 +2,13 @@
   import { createEventDispatcher, onMount } from "svelte";
   import { getParking } from "../../ParkingList/getParking";
   import SingleLocation from "../SingleLocation.svelte";
-  export let open = false;
+  export let open = true;
   $: locations = [];
   const disableDefaultUI = createEventDispatcher();
 
   onMount(() => {
-    getParking().then((p) => (locations = p.slice(0, 4)));
+    getParking().then((p) => (locations = p.slice(4, 18)));
+    console.log(locations);
   });
 </script>
 
@@ -27,11 +28,13 @@
     position: absolute;
     width: 100vw;
     bottom: 0;
+    overflow: auto;
   }
   .locations {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    gap: 2rem;
     align-items: center;
     overflow-x: scroll;
   }
