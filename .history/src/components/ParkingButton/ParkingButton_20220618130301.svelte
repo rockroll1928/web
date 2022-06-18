@@ -11,8 +11,7 @@
     position: absolute;
     z-index: 2;
     border-radius: 50%;
-    top: 10%;
-    right: 5%;
+    top: 50%;
     padding: 3rem;
     background-color: blue;
     color: white;
