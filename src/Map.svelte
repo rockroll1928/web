@@ -141,6 +141,7 @@
 			map: map
 		});
 		marker._source = source;
+		marker._pin = pin;
 		// add click listener here.
 		return marker;
 	}
