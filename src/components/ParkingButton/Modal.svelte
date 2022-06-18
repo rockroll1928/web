@@ -8,7 +8,7 @@ export let isOpen = false;
 
 {#if isOpen}
 <div class="wrapper" on:click={() => dispatch("request-close")}>
-    <div class="modal">
+    <div class="modal" on:click={(e) => e.stopPropagation()}>
 <slot />
     </div>
 </div>
@@ -16,7 +16,7 @@ export let isOpen = false;
 
 <style>
     .wrapper{
-        z-index: 9999;
+        z-index: 9998;
         position: absolute;
         left:0;
         top:0;
