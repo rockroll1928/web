@@ -4,6 +4,7 @@
   import MenuButton from "./components/MAP/MenuButton/MenuButton.svelte";
   import { translateIcon } from "./utility/IconMapping";
   import Drawer from "./components/STOPP/Drawer/Drawer.svelte";
+  import  openModal from "./components/INFO/InfoOverlay.svelte";
 
   import { currentLocation } from "./components/Store/Stores.js";
 
@@ -150,9 +151,9 @@
   <MenuButton
     alt="search"
     src="/assets/Search.svg"
-    on:menu-button-click={() => {}}
+    on:menu-button-click={() => alert("Traffic accident message")}
   />
-  <MenuButton alt="pin" src="/assets/Pin.svg" on:menu-button-click={() => {}} />
+  <MenuButton alt="pin" src="/assets/Pin.svg" on:menu-button-click={() => alert("Traffic accident message")} />
   <MenuButton
     alt="coffee"
     src="/assets/Coffee.svg"
