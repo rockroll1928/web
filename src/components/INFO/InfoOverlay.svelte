@@ -3,14 +3,17 @@
 
   let isOpenModal = false;
 
-  function openModal() {
+   const  openModal = function() {
       isOpenModal = true;
   }
 
   function closeModal() {
       isOpenModal = false;
   }
+
+  module.exports = openModal;
+
 </script>
 
-<button on:click={openModal}>Open Modal</button>
 <Modal isOpenModal={isOpenModal} on:closeModal={closeModal} />
+
