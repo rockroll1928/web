@@ -5,7 +5,7 @@
   import MenuButton from "./components/MAP/MenuButton/MenuButton.svelte";
   import { translateIcon } from "./utility/IconMapping";
   import Drawer from "./components/STOPP/Drawer/Drawer.svelte";
-  import openModal from "./components/INFO/InfoOverlay.svelte";
+  import InfoContent, {contentString} from "./components/INFO/InfoContent.svelte";
 
   import { currentLocation } from "./components/Store/Stores.js";
 
@@ -27,7 +27,6 @@
   let relevantPins = [];
   $: isStopsOpen = false;
 
-  const infowindow = new google.maps.InfoWindow({});
   onMount(async () => {
     map = new google.maps.Map(container, {
       zoom,
@@ -76,7 +75,7 @@
 
           break;
 
-        default:
+          default:
           break;
       }
     };
@@ -115,21 +114,21 @@
       icon: `./assets/pins/${translateIcon(pin.iconType)}.svg`,
 			map: map
 		});
+
+    const infowindow = new google.maps.InfoWindow({
+      content: contentString,
+    })
+
 		marker._source = source;
 		marker._pin = pin;
-		// add click listener here.
 
-    const h1 = document.createElement('h1');
-    h1.textContent = "Hej";
-
-    marker.addListener('click', () => {
-      infowindow.setContent(h1);
-      infowindow.open({
-        anchor: marker,
-        map,
-      });
+    marker.addListener("click", () => {
+    infowindow.open({
+      anchor: marker,
+      map,
+      shouldFocus: false,
     });
-
+  });
 		return marker;
 	}
 
