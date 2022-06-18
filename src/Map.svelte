@@ -135,11 +135,13 @@
 	});
 
 	const createMapMarker = (pin, source) => {
-		return new google.maps.Marker({
+		const marker = new google.maps.Marker({
 			position: new google.maps.LatLng(pin.lat, pin.lon),
       icon: `./assets/pins/${translateIcon(pin.iconType)}.svg`,
 			map: map
 		});
+		// add click listener here.
+		return marker;
 	}
 
   const getRelevantPins = (pos) => {
