@@ -9,8 +9,9 @@
    * @type {google.maps.Map}
    */
   let map;
-  let zoom = 12;
+  let zoom = 15.5;
   let center = presentCenter;
+  let relevantPins = [];
 
   onMount(async () => {
     map = new google.maps.Map(container, {
@@ -55,7 +56,16 @@
   });
 
   const getRelevantPins = () => {
-    infoService.getPinList(center).then(console.log);
+    infoService.getPinList(center).then((pins) => {
+      console.log(pins);
+      relevantPins = pins.map((pin) => {
+        new google.maps.Marker({
+          position: new google.maps.LatLng(pin.lat, pin.lon),
+          icon: `./assets/pins/${pin.type || 'message'}.svg`,
+          map: map
+        });
+      })
+    });
   }
 
 </script>
