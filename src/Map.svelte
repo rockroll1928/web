@@ -40,7 +40,7 @@
               lng: position.coords.longitude,
             };
             console.log(pos);
-            map.setCenter(pos);
+            map.panTo(pos);
           },
           () => {
             handleLocationError(true, infoWindow, map.getCenter());
