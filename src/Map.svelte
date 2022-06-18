@@ -1,35 +1,33 @@
 <script>
   import { onMount } from "svelte";
   import InfoService from "./services/InfoService";
-  import { presentCenter, presentPosition } from "./components/Store/Stores.js";
+  import { currentLocation } from "./components/Store/Stores.js";
 
   const infoService = new InfoService();
   let container;
   let map;
-  let zoom = 12;
-  let center = presentCenter;
+  let zoom = 15;
+  let center;
 
   onMount(async () => {
     map = new google.maps.Map(container, {
       zoom,
-      center,
     });
-    presentCenter.subscribe((pos) => {
+
+    currentLocation.subscribe((pos) => {
       console.log("pos", pos);
-      map.setCenter(pos);
+      map.panTo(pos);
+      let myMarker = new google.maps.Marker({
+        position: pos,
+        map: map,
+        title: "Hello World!",
+      });
     });
     google.maps.event.addListener(map, "click", function (event) {
-      presentCenter.update(() => ({
+      currentLocation.update(() => ({
         lat: event.latLng.lat(),
         lng: event.latLng.lng(),
       }));
-      alert(
-        "Latitude: " +
-          event.latLng.lat() +
-          " " +
-          ", longitude: " +
-          event.latLng.lng()
-      );
     });
     const getCurrentPosition = () => {
       if (navigator.geolocation) {
