@@ -25,6 +25,7 @@
   let relevantPins = [];
   $: isStopsOpen = false;
 
+  const infowindow = new google.maps.InfoWindow({});
   onMount(async () => {
     map = new google.maps.Map(container, {
       zoom,
@@ -136,11 +137,22 @@
     infoService.getPinList(pos).then((pins) => {
       console.log(pins);
       relevantPins = pins.map((pin) => {
-        new google.maps.Marker({
+        const marker = new google.maps.Marker({
           position: new google.maps.LatLng(pin.lat, pin.lon),
           icon: `./assets/pins/${translateIcon(pin.iconType)}.svg`,
           map: map,
         });
+        
+        const h1 = document.createElement('h1');
+        h1.textContent = "Hej";
+
+        marker.addListener('click', () => {
+          infowindow.setContent(h1);
+          infowindow.open({
+            anchor: marker,
+            map,
+          });
+        })
       });
     });
   };
