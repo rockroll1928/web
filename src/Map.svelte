@@ -1,7 +1,6 @@
 <script>
   import InfoService from './services/InfoService';
-  const infoService = new InfoService();
-  let container;
+  const infoService = new InfoService();  let container;
   let map;
   let zoom = 12;
   let center = { lat: 57.696639517983165, lng: 11.828236342523105 };
@@ -13,6 +12,7 @@
       zoom,
       center,
     });
+    //createButtons();
   });
 
   const getCurrentPosition = () => {
@@ -36,9 +36,20 @@
     }
   }
 
+  const createButtons = () => {
+    const locationButton = document.createElement("button");
+    locationButton.textContent = "Pan to Current Location";
+    locationButton.classList.add("btn");
+    locationButton.onclick = getCurrentPosition;
+
+    const searchButton = document.createElement("button");
+
+
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+  }
+
 </script>
 
-<button on:click={getCurrentPosition}>get location test</button>
 <div class="full-screen" bind:this={container} />
 
 <style>
