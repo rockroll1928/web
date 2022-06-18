@@ -4,7 +4,7 @@
   import MenuButton from "./components/MAP/MenuButton/MenuButton.svelte";
   import { translateIcon } from "./utility/IconMapping";
   import Drawer from "./components/STOPP/Drawer/Drawer.svelte";
-  import  openModal from "./components/INFO/InfoOverlay.svelte";
+  import openModal from "./components/INFO/InfoOverlay.svelte";
 
   import { currentLocation } from "./components/Store/Stores.js";
 
@@ -46,30 +46,19 @@
       centerMarker = new google.maps.Marker({
         position: pos,
         map: map,
-        title: "Hello World!",
+        title: "Your position",
+        icon: "/assets/myposition.svg",
       });
       getRelevantPins(pos);
     });
-    const navGeoLocSuccess = (pos) => {
-      const crd = pos.coords;
-      currentLocation.update(() => ({
-        lat: crd.latitude,
-        lng: crd.longitude,
-      }));
-    };
 
-    function navGeoLocError(err) {
-      console.warn("ERROR(" + err.code + "): " + err.message);
-    }
+    watchPosition();
 
-    id = navigator.geolocation.watchPosition(
-      navGeoLocSuccess,
-      navGeoLocError,
-      options
-    );
+    map.addListener("dragstart", () => {
+      navigator.geolocation.clearWatch(id);
+    });
 
     document.onkeydown = (event) => {
-      console.log("key", event.key);
       switch (event.key) {
         case "ArrowUp":
           navigator.geolocation.clearWatch(id);
@@ -89,21 +78,6 @@
       }
     };
 
-    document.onkeyup = (event) => {
-      switch (event.key) {
-        case "ArrowUp":
-          id = navigator.geolocation.watchPosition(
-            navGeoLocSuccess,
-            navGeoLocError,
-            options
-          );
-
-          break;
-
-        default:
-          break;
-      }
-    };
     /*
     google.maps.event.addListener(map, "click", function (event) {
       currentLocation.update(() => ({
@@ -132,6 +106,25 @@
 */
   });
 
+  const watchPosition = () => {
+    const navGeoLocSuccess = (pos) => {
+      const crd = pos.coords;
+      currentLocation.update(() => ({
+        lat: crd.latitude,
+        lng: crd.longitude,
+      }));
+    };
+
+    function navGeoLocError(err) {
+      console.warn("ERROR(" + err.code + "): " + err.message);
+    }
+    id = navigator.geolocation.watchPosition(
+      navGeoLocSuccess,
+      navGeoLocError,
+      options
+    );
+  };
+
   const getRelevantPins = (pos) => {
     infoService.getPinList(pos).then((pins) => {
       console.log(pins);
@@ -147,18 +140,28 @@
 </script>
 
 <div class="full-screen" bind:this={container} />
-<div class="menu-buttons">
+<div class="lower-left-buttons">
   <MenuButton
-    alt="search"
-    src="/assets/Search.svg"
+    alt="pin"
+    src="/assets/addpin.svg"
     on:menu-button-click={() => alert("Traffic accident message")}
   />
-  <MenuButton alt="pin" src="/assets/Pin.svg" on:menu-button-click={() => alert("Traffic accident message")} />
+</div>
+<div class="menu-buttons">
   <MenuButton
     alt="coffee"
-    src="/assets/Coffee.svg"
+    src="/assets/stops.svg"
     on:menu-button-click={() => {
       isStopsOpen = true;
+    }}
+  />
+</div>
+<div class="lower-right-buttons">
+  <MenuButton
+    alt="centerposition"
+    src="/assets/centerlocation.svg"
+    on:menu-button-click={() => {
+      watchPosition();
     }}
   />
 </div>
@@ -176,5 +179,19 @@
     left: 50%;
     transform: translateX(-50%);
     bottom: 5%;
+  }
+  .lower-left-buttons {
+    z-index: 2;
+    position: absolute;
+    left: 60px;
+    transform: translateX(-50%);
+    bottom: 30px;
+  }
+  .lower-right-buttons {
+    z-index: 2;
+    position: absolute;
+    right: 10px;
+    transform: translateX(-50%);
+    bottom: 30px;
   }
 </style>
