@@ -158,7 +158,7 @@
   const getRelevantPins = (pos) => {
 		Promise.all([
 			infoService.getPinList(pos),
-			Promise.resolve([])//pinService.getPinList()
+			pinService.getPinList()
 		]).then(([infoPinList, ugcPinList]) => {
 			relevantPins = infoPinList.map((pin) => createMapMarker(pin, 'info')).concat(ugcPinList.map((pin) => createMapMarker(pin, 'pin')));
 		});
