@@ -15,7 +15,7 @@
 <Drawer
   {open}
   size="50%"
-  placement="bottom"
+  placement="right"
   on:clickAway={() => dispatch("on-drawer-close")}
 >
   <div class="content">
