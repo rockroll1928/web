@@ -15,7 +15,7 @@
     padding: 3rem;
     background-color: blue;
     color: white;
-    font-size: 2rem;
+    font-size: 4rem;
     font-weight: bold;
     cursor: pointer;
   }
