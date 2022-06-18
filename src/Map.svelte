@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import InfoService from "./services/InfoService";
-  import MenuButton from "./components/menuButton/MenuButton.svelte";
+  import MenuButton from "./components/MAP/MenuButton/MenuButton.svelte";
   
   import { currentLocation } from "./components/Store/Stores.js";
 
@@ -12,7 +12,7 @@
    */
   let map;
   let zoom = 15;
-  let center = presentCenter;
+  let center = currentLocation;
   let relevantPins = [];
 
   onMount(async () => {
