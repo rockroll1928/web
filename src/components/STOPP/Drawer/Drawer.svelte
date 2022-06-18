@@ -8,16 +8,17 @@
 <Drawer
   {open}
   size="50%"
-  placement="left"
+  placement="right"
   on:clickAway={() => dispatch("on-drawer-close")}
 />
 
 <style>
-  .panel {
-    background-color: transparent;
+  :global(.drawer .overlay) {
+    background: unset !important;
   }
-  .overlay {
-    background-color: unset;
+
+  :global(.drawer .panel) {
+    background: transparent !important;
   }
   .close {
     display: block;
