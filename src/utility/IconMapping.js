@@ -14,6 +14,7 @@ IconMapping.translateIcon = function(iconType) {
 		case 'roadwork':
 		case 'roadworkPlanned': 
 			return 'roadwork';
+		case 'police': return 'police';
 		default: return 'message';
 	}
 }

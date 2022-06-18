@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import InfoService from "./services/InfoService";
+  import PinService from "./services/PinService";
   import MenuButton from "./components/MAP/MenuButton/MenuButton.svelte";
   import { translateIcon } from "./utility/IconMapping";
   import Drawer from "./components/STOPP/Drawer/Drawer.svelte";
@@ -9,6 +10,7 @@
   import { currentLocation } from "./components/Store/Stores.js";
 
   const infoService = new InfoService();
+	const pinService = new PinService();
   let container;
   /**
    * @type {google.maps.Map}
@@ -130,19 +132,26 @@
       }
     };
 */
-  });
+	});
+
+	const createMapMarker = (pin, source) => {
+		const marker = new google.maps.Marker({
+			position: new google.maps.LatLng(pin.lat, pin.lon),
+      icon: `./assets/pins/${translateIcon(pin.iconType)}.svg`,
+			map: map
+		});
+		marker._source = source;
+		// add click listener here.
+		return marker;
+	}
 
   const getRelevantPins = (pos) => {
-    infoService.getPinList(pos).then((pins) => {
-      console.log(pins);
-      relevantPins = pins.map((pin) => {
-        new google.maps.Marker({
-          position: new google.maps.LatLng(pin.lat, pin.lon),
-          icon: `./assets/pins/${translateIcon(pin.iconType)}.svg`,
-          map: map,
-        });
-      });
-    });
+		Promise.all([
+			infoService.getPinList(pos),
+			pinService.getPinList()
+		]).then(([infoPinList, ugcPinList]) => {
+			relevantPins = infoPinList.map((pin) => createMapMarker(pin, 'info')).concat(ugcPinList.map((pin) => createMapMarker(pin, 'pin')));
+		});
   };
 </script>
 
