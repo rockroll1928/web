@@ -5,6 +5,9 @@
 
   const infoService = new InfoService();
   let container;
+  /**
+   * @type {google.maps.Map}
+   */
   let map;
   let zoom = 12;
   let center = presentCenter;
