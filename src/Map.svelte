@@ -26,6 +26,9 @@
   };
   let relevantPins = [];
   $: isStopsOpen = false;
+  let date = new Date();
+  $: hour = date.getHours();
+  $: minute = date.getMinutes();
 
   const infowindow = new google.maps.InfoWindow({});
   onMount(async () => {
@@ -160,7 +163,18 @@
 			relevantPins = infoPinList.map((pin) => createMapMarker(pin, 'info')).concat(ugcPinList.map((pin) => createMapMarker(pin, 'pin')));
 		});
   };
+
+onMount( () => {
+  const interval = setInterval(() => {
+    date = new Date();
+  }, 1000);
+});
+
 </script>
+
+<div class="clock">
+  {hour} : {minute}
+</div>
 
 <div class="full-screen" bind:this={container} />
 <div class="lower-left-buttons">
@@ -216,5 +230,10 @@
     right: 10px;
     transform: translateX(-50%);
     bottom: 30px;
+  }
+  .clock {
+    z-index: 2;
+    position: fixed;
+    align-items: center;
   }
 </style>
