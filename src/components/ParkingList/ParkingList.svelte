@@ -1,11 +1,14 @@
 <script>
   import { onMount } from "svelte";
+
   export let data;
+
   onMount(() => {
     fetch(
       "https://europe-west1-bootcamp222.cloudfunctions.net/stops-service/getParking"
     ).then((response) => {
       data = response.json();
+
       console.log(data);
     });
   });
@@ -13,7 +16,12 @@
 
 <div>
   <ul>
-    Adresses
-    {data}
+    {#each data as pspace}
+      <li>
+        <a href="/">
+          {pspace.label}
+        </a>
+      </li>
+    {/each}
   </ul>
 </div>
