@@ -5,7 +5,8 @@
   "license": "MIT",
   "dependencies": {
     "@types/google.maps": "^3.49.2",
-    "svelte": "^3.48.0"
+    "svelte": "^3.48.0",
+    "svelte-drawer-component": "^1.2.2"
   },
   "scripts": {
     "dev": "rollup -c -w",
