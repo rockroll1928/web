@@ -1,10 +1,6 @@
 <script>
-<<<<<<< HEAD
   import InfoService from './services/InfoService';
   const infoService = new InfoService();  let container;
-=======
-  let container;
->>>>>>> e4d68a0f696e54bbe4a7d7f37fdd5252c02d1706
   let map;
   let zoom = 12;
   let center = { lat: 57.696639517983165, lng: 11.828236342523105 };
@@ -16,7 +12,7 @@
       zoom,
       center,
     });
-    //createButtons();
+    createButtons();
   });
 
   const getCurrentPosition = () => {
@@ -44,12 +40,14 @@
     const locationButton = document.createElement("button");
     locationButton.textContent = "Pan to Current Location";
     locationButton.classList.add("btn");
-    locationButton.onclick = getCurrentPosition;
+    locationButton.addEventListener("click", getCurrentPosition);
 
     const searchButton = document.createElement("button");
+    searchButton.textContent = "Search";
+    searchButton.classList.add("btn");
 
-
-    map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+    map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(locationButton);
+    map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(searchButton);
   }
 
 </script>
