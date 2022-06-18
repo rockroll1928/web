@@ -30,12 +30,12 @@
     </div>
     <GasstationButton />
   </div>
-
-  <Locations
-    open={openParkingButton}
-    on:clickAway={() => dispatch("on-drawer-close")}
-  />
 </Drawer>
+
+<Locations
+  open={openParkingButton}
+  on:clickAway={() => dispatch("on-drawer-close")}
+/>
 
 <style>
   :global(.drawer .overlay) {
