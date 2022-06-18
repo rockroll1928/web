@@ -14,6 +14,7 @@
     });
     presentCenter.subscribe((pos) => {
       console.log("pos", pos);
+      map.setCenter(pos);
     });
     google.maps.event.addListener(map, "click", function (event) {
       presentCenter.update(() => ({

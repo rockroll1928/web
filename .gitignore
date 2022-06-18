@@ -6,7 +6,8 @@
 .vscode
 .env
 *.key
-
+yarn.lock
+package-lock.json
 
 # CMake
 cmake-build-*/
