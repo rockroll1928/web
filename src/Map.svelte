@@ -1,17 +1,18 @@
 <script>
   import { onMount } from "svelte";
   import InfoService from "./services/InfoService";
-  import { presentCenter, presentPosition } from "./components/Store/Stores.js";
   import MenuButton from "./components/menuButton/MenuButton.svelte";
   
+  import { currentLocation } from "./components/Store/Stores.js";
+
   const infoService = new InfoService();
   let container;
   /**
    * @type {google.maps.Map}
    */
   let map;
-  let zoom = 12;
-  let center = presentCenter;
+  let zoom = 15;
+  let center;
 
   onMount(async () => {
     map = new google.maps.Map(container, {
@@ -20,23 +21,22 @@
       disableDefaultUI: true,
       scrollwheel: false
     });
-    presentCenter.subscribe((pos) => {
+
+    currentLocation.subscribe((pos) => {
       console.log("pos", pos);
-      map.setCenter(pos);
+      map.panTo(pos);
+      let myMarker = new google.maps.Marker({
+        position: pos,
+        map: map,
+        title: "Hello World!",
+      });
       getRelevantPins(pos);
     });
     google.maps.event.addListener(map, "click", function (event) {
-      presentCenter.update(() => ({
+      currentLocation.update(() => ({
         lat: event.latLng.lat(),
         lng: event.latLng.lng(),
       }));
-      alert(
-        "Latitude: " +
-          event.latLng.lat() +
-          " " +
-          ", longitude: " +
-          event.latLng.lng()
-      );
     });
     const getCurrentPosition = () => {
       if (navigator.geolocation) {
@@ -47,7 +47,7 @@
               lng: position.coords.longitude,
             };
             console.log(pos);
-            map.setCenter(pos);
+            map.panTo(pos);
           },
           () => {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -59,8 +59,7 @@
 
   const getRelevantPins = () => {
     infoService.getPinList(center).then(console.log);
-  }
-
+  };
 </script>
 
 <div class="full-screen" bind:this={container} />
