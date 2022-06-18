@@ -1,7 +1,9 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import Drawer from "svelte-drawer-component";
+
   import RestroomButton from "../RestroomButton/RestroomButton.svelte";
+  import ParkingButton from "../ParkingButton/ParkingButton.svelte";
 
   import Card from "./Card.svelte";
   export let open = false;
@@ -16,6 +18,7 @@
 >
   <div class="content">
     <RestroomButton />
+    <ParkingButton />
   </div>
 
   <div class="items">
@@ -33,6 +36,7 @@
 
   :global(.drawer .panel) {
     background: transparent !important;
+    width: unset !important;
   }
   .close {
     display: block;
@@ -53,6 +57,10 @@
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
+    width: fit-content;
+    justify-content: -end;
+    padding: 3rem;
+    gap: 1rem;
   }
 
   .items {
@@ -65,7 +73,5 @@
     justify-content: center;
     right: 50%;
     left: 50%;
-    min-width: 50vW;
-    
   }
 </style>
