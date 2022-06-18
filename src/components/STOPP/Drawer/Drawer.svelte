@@ -14,11 +14,11 @@
 <Drawer
   {open}
   size="50%"
-  placement="right"
+  placement="bottom"
   on:clickAway={() => dispatch("on-drawer-close")}
 >
   <div class="content">
-    <RestroomButton />
+    <RestroomButton on:click={() => dispatch("on-parking-open")} />
     <ParkingButton />
   </div>
 </Drawer>
