@@ -1,14 +1,16 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   import Drawer from "svelte-drawer-component";
   export let open = false;
+  const dispatch = createEventDispatcher();
 </script>
 
-<Drawer {open} size="50%" placement="left" on:clickAway={() => (open = false)}>
-  <button class="close" on:click={() => (open = false)}>Close</button>
-  <img src="https://picsum.photos/200?random=1" alt="In drawer" />
-  <img src="https://picsum.photos/200?random=2" alt="In drawer" />
-  <img src="https://picsum.photos/200?random=3" alt="In drawer" />
-</Drawer>
+<Drawer
+  {open}
+  size="50%"
+  placement="left"
+  on:clickAway={() => dispatch("on-drawer-close")}
+/>
 
 <style>
   .panel {

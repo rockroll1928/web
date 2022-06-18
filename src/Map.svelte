@@ -97,7 +97,7 @@
     }}
   />
 </div>
-<Drawer open={isStopsOpen} />
+<Drawer open={isStopsOpen} on:on-drawer-close={() => (isStopsOpen = false)} />
 
 <style>
   .full-screen {
