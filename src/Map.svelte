@@ -4,7 +4,7 @@
   let map;
   let zoom = 12;
   let center = { lat: 57.696639517983165, lng: 11.828236342523105 };
-  
+
   import { onMount } from "svelte";
 
   onMount(async () => {
@@ -16,7 +16,6 @@
   });
 
   const getCurrentPosition = () => {
-
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -34,7 +33,7 @@
     } else {
       // Browser doesn't support Geolocation
     }
-  }
+  };
 
   const createButtons = () => {
     const locationButton = document.createElement("button");

@@ -4,16 +4,16 @@
   export let text = "";
 </script>
 
-<button onClick={() => dispatch("open-parking-button")}>{text}</button>
+<button on:click={() => dispatch("open-parking-button")}>{text}</button>
 
 <style>
   button {
     position: absolute;
     z-index: 2;
-    border-radius: 50%;
+    border-radius: 10%;
     top: 10%;
     right: 5%;
-    padding: 3rem;
+    padding: 2rem;
     background-color: blue;
     color: white;
     font-size: 2rem;
