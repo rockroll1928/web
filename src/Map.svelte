@@ -284,7 +284,7 @@
   }
 
 	.logo {
-		padding: 1.875rem;
+		padding: 1.25rem;
 		position: fixed;
 		z-index: 2;
 		margin: 1.5rem;
