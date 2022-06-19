@@ -11,3 +11,25 @@ body {
   box-sizing: border-box;
   font-family: sans-serif;
 }
+
+.contentPopup-Flex {
+  display:flex;
+
+
+}
+
+.contentPopup-Heading {
+  font-size: 20px;
+  font-weight:500;
+
+}
+
+.contentPopup-Heading::first-letter
+ {
+  text-transform: uppercase;
+}
+
+.contentPopup-Pin {
+  width: 4rem;
+  height: 4rem;
+}
