@@ -10,6 +10,7 @@
   import ReportsModal from "./components/PIN/ReportsModal/ReportsModal.svelte";
   import { currentLocation } from "./components/Store/Stores.js";
   import { centerOnPosition } from "./components/Store/Stores.js";
+  import iconMapping from "./utility/IconMapping";
 
   const infoService = new InfoService();
   const pinService = new PinService();
@@ -200,22 +201,11 @@
     console.log("id", id);
   };
 
-  async function onReportsButtonClick({ iconType }) {
+  function onReportsButtonClick({ iconType }) {
     let pos = map.getCenter();
-    let pinObject = {
-      latitude: pos.lat(),
-      longitude: pos.lng(),
-      type: iconType,
-    };
- 
-    pinService.savePin(pinObject).then((response) => {
-      if(!response.data) return;
-
-      //createMapMarker(response, "pin");
-       //isReportsOpen = false;
-      console.log(response);
-   
-    });
+    let pinObject = { lat: pos.lat(), lon: pos.lng(), iconType:iconMapping.translateIcon(iconType) };
+    createMapMarker(pinObject, "pin");
+    isReportsOpen = false;
   }
 </script>
 
@@ -238,16 +228,10 @@
     on:menu-button-click={() => {
       isReportsOpen = !isReportsOpen;
     }}
+    on:report-button-click={(e) => onReportsButtonClick(e)}
   />
 </div>
 <div class="center-buttons">
-  <MenuButton
-    alt="pin"
-    src="/assets/Pin.svg"
-    on:menu-button-click={() => {
-      isReportsOpen = !isReportsOpen;
-    }}
-  />
   <MenuButton
     alt="coffee"
     src={`/assets/${isStopsOpen ? "closestops" : "stops"}.svg`}
