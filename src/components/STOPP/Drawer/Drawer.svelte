@@ -33,7 +33,7 @@
 </Drawer>
 
 <Locations
-  open={openParkingButton}
+  open={openParkingButton && open}
   on:clickAway={() => dispatch("on-drawer-close")}
 />
 
