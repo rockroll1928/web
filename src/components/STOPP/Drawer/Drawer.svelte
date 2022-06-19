@@ -25,7 +25,7 @@
   size="50%"
   placement="right"
   on:clickAway={() => {
-    dispatch("on-drawer-close");
+    // dispatch("on-drawer-close");
     openParkingButton = false;
   }}
 >
