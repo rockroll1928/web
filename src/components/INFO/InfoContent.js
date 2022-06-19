@@ -8,7 +8,7 @@ InfoContent.infoContent = function(options = { iconType: 'ferry' }) {
     `<img class="contentPopup-Pin" src="assets/pins/${translateIcon(options.iconType)}.svg"/>`+
     '<div>' +
 		'<h1 class="contentPopup-Heading">'+options.iconType+'</h1>' +
-    `<p class="contentPopup-Date">16 Jul - 02 Aug</p>` +
+    `<p class="contentPopup-Date">${options.startTime} - ${options.endTime}</p>` +
     '</div>' +
     '</div>' +
     `<p>${options?.message}</p>` +
