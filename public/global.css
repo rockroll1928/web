@@ -20,8 +20,9 @@ body {
 
 .contentPopup-Heading {
   font-size: 20px;
-  font-weight:500;
-
+  font-weight:400;
+  margin-bottom: 1px;
+  margin-top: 5px;
 }
 
 .contentPopup-Heading::first-letter
@@ -32,4 +33,9 @@ body {
 .contentPopup-Pin {
   width: 4rem;
   height: 4rem;
+}
+
+.contentPopup-Date {
+  margin-top: 0;
+  font-weight: 400;
 }
