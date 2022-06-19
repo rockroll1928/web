@@ -9,9 +9,7 @@
   import { format, formatDistance, formatRelative, subDays } from "date-fns";
   import ReportsModal from "./components/PIN/ReportsModal/ReportsModal.svelte";
   import { currentLocation } from "./components/Store/Stores.js";
-  import {
-    centerOnPosition,
-  } from "./components/Store/Stores.js";
+  import { centerOnPosition } from "./components/Store/Stores.js";
 
   const infoService = new InfoService();
   const pinService = new PinService();
@@ -32,9 +30,9 @@
   $: isStopsOpen = false;
   let date = new Date();
   $: time = format(date, "HH:mm");
- let isReportsOpen = false;
+  let isReportsOpen = false;
 
-   onMount(async () => {
+  onMount(async () => {
     map = new google.maps.Map(container, {
       zoom,
       disableDefaultUI: true,
@@ -199,6 +197,10 @@
   };
 </script>
 
+<div class="logo">
+	<img src="./assets/sogeti-trucks.svg" alt="Sogeti Trucks – Part of Capgemini" />
+</div>
+
 <div class="clock">
   {time}
 </div>
@@ -208,11 +210,12 @@
   <MenuButton
     alt="pin"
     src="/assets/addpin.svg"
-    on:menu-button-click={() => alert("Traffic accident message")}
+    on:menu-button-click={() => {
+      isReportsOpen = !isReportsOpen;
+    }}
   />
 </div>
 <div class="center-buttons">
-  <MenuButton alt="pin" src="/assets/Pin.svg" on:menu-button-click={() =>  {isReportsOpen = !isReportsOpen; }} />
   <MenuButton
     alt="coffee"
     src={`/assets/${isStopsOpen ? "closestops" : "stops"}.svg`}
@@ -233,7 +236,7 @@
 </div>
 <Drawer open={isStopsOpen} on:on-drawer-close={() => (isStopsOpen = false)} />
 
-{#if isReportsOpen} 
+{#if isReportsOpen}
   <ReportsModal on:close-reports-modal={() => (isReportsOpen = false)} />
 {/if}
 
@@ -273,11 +276,25 @@
     align-items: center;
     font-family: monospace;
     background-color: rgba(255, 255, 255, 0.8);
-		backdrop-filter: blur(1rem);
     font-size: 1.7981375rem;
     padding: 1.1875rem 1.8125rem;
     border-radius: calc(1.7981375rem + 1.1875rem);
     right: 0;
     margin: 1.5rem;
   }
+
+	.logo {
+		padding: 1.875rem;
+		position: fixed;
+		z-index: 2;
+		margin: 1.5rem;
+		left: 0;
+		top: 0;
+		background-color: white;
+	}
+
+	.logo > img {
+		width: 9rem;
+		height: auto;
+	}
 </style>

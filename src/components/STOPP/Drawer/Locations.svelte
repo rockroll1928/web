@@ -3,7 +3,7 @@
   import { getParking } from "../../ParkingList/getParking";
   import SingleLocation from "../SingleLocation.svelte";
   export let open = true;
-  export let type = ''
+  export let type = "";
   $: locations = [];
   const disableDefaultUI = createEventDispatcher();
 
@@ -29,7 +29,7 @@
     padding: 2rem 0;
     position: absolute;
     width: 100vw;
-    bottom: 0;
+    bottom: 15%;
     overflow: auto;
   }
   .locations {
