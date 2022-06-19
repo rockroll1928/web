@@ -198,7 +198,10 @@
 </script>
 
 <div class="logo">
-	<img src="./assets/sogeti-trucks.svg" alt="Sogeti Trucks – Part of Capgemini" />
+  <img
+    src="./assets/sogeti-trucks.svg"
+    alt="Sogeti Trucks – Part of Capgemini"
+  />
 </div>
 
 <div class="clock">
@@ -283,18 +286,19 @@
     margin: 1.5rem;
   }
 
-	.logo {
-		padding: 1.25rem;
-		position: fixed;
-		z-index: 2;
-		margin: 1.5rem;
-		left: 0;
-		top: 0;
-		background-color: white;
-	}
+  .logo {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: calc(1.7981375rem + 1.1875rem);
+    left: 0;
+    margin: 1.5rem;
+    padding: 1.25rem;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+  }
 
-	.logo > img {
-		width: 9rem;
-		height: auto;
-	}
+  .logo > img {
+    width: 9rem;
+    height: auto;
+  }
 </style>
