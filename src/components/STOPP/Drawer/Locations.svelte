@@ -28,7 +28,7 @@
     padding: 2rem 0;
     position: absolute;
     width: 100vw;
-    bottom: 20%;
+    bottom: 15%;
     overflow: auto;
   }
   .locations {
