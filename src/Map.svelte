@@ -206,17 +206,12 @@
   <MenuButton
     alt="pin"
     src="/assets/addpin.svg"
-    on:menu-button-click={() => alert("Traffic accident message")}
-  />
-</div>
-<div class="center-buttons">
-  <MenuButton
-    alt="pin"
-    src="/assets/Pin.svg"
     on:menu-button-click={() => {
       isReportsOpen = !isReportsOpen;
     }}
   />
+</div>
+<div class="center-buttons">
   <MenuButton
     alt="coffee"
     src={`/assets/${isStopsOpen ? "closestops" : "stops"}.svg`}
