@@ -5,7 +5,7 @@
   import MenuButton from "./components/MAP/MenuButton/MenuButton.svelte";
   import { translateIcon } from "./utility/IconMapping";
   import Drawer from "./components/STOPP/Drawer/Drawer.svelte";
-  import InfoContent, {contentString} from "./components/INFO/InfoContent.svelte";
+  import InfoContent from "./components/INFO/InfoContent";
 	import { format, formatDistance, formatRelative, subDays } from 'date-fns'
   import { currentLocation } from "./components/Store/Stores.js";
 
@@ -117,20 +117,34 @@
 			map: map
 		});
 
-    const infowindow = new google.maps.InfoWindow({
-      content: contentString,
-    })
+		let infowindow;
+
+		switch (source) {
+			case 'info':
+				infowindow = new google.maps.InfoWindow({
+					content: InfoContent.infoContent(pin.options),
+				});
+				break;
+			case 'pin':
+				infowindow = new google.maps.InfoWindow({
+					content: 'Not yet.',
+				});
+				break;
+			default:
+				console.log("Unsupported pin source");
+		}
 
 		marker._source = source;
 		marker._pin = pin;
 
     marker.addListener("click", () => {
-    infowindow.open({
-      anchor: marker,
-      map,
-      shouldFocus: false,
-    });
-  });
+			infowindow.open({
+				anchor: marker,
+				map,
+				shouldFocus: false,
+			});
+		});
+		
 		return marker;
 	}
 
