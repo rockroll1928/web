@@ -8,10 +8,9 @@
   $: locations = [];
   const disableDefaultUI = createEventDispatcher();
 
-  onMount(() => {
+  $: {
     getParking(type).then((p) => (locations = p.slice(4, 18)));
-    console.log(locations);
-  });
+  };
 </script>
 
 {#if open}
@@ -35,7 +34,7 @@
     width: 100vw;
     bottom: 15%;
     overflow: auto;
-    z-index:100;
+    z-index: 100;
   }
   .locations {
     display: flex;
