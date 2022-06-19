@@ -24,7 +24,10 @@
     {/if}
     {#if expanded}
       <div className="image-wrapper">
-       <img src="https://www.priorityvillas.com/rentals/fotos/2/149466985749e65c59c8a0c676cd673069837a1faf/149466985724e5dcd28eb02c0d393bd6d0527144b9.jpg" alt="parking"/>
+        <img
+          src="https://www.priorityvillas.com/rentals/fotos/2/149466985749e65c59c8a0c676cd673069837a1faf/149466985724e5dcd28eb02c0d393bd6d0527144b9.jpg"
+          alt="parking"
+        />
       </div>
     {/if}
   </div>
@@ -36,11 +39,12 @@
     padding: 1rem;
     border-radius: 0.25rem;
     width: 13rem;
-    align-self:flex-end;
-
+    align-self: flex-end;
+    height: 160px;
     min-width: 11rem;
     cursor: pointer;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+    padding-bottom: 2rem;
   }
   .location.expanded {
     height: 20rem;
@@ -58,11 +62,10 @@
     /* warning - FUnctional */
     color: #c4001a;
   }
-  .image-wrapper{
+  .image-wrapper {
     width: 100%;
-
   }
-  img{
+  img {
     width: 100%;
     object-fit: cover;
   }
