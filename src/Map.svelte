@@ -199,6 +199,10 @@
   };
 </script>
 
+<div class="logo">
+	<img src="./assets/sogeti-trucks.svg" alt="Sogeti Trucks – Part of Capgemini" />
+</div>
+
 <div class="clock">
   {time}
 </div>
@@ -280,4 +284,19 @@
     right: 0;
     margin: 1.5rem;
   }
+
+	.logo {
+		padding: 1rem;
+		position: fixed;
+		z-index: 2;
+		margin: 1.5rem;
+		left: 0;
+		top: 0;
+		background-color: white;
+	}
+
+	.logo > img {
+		width: 9rem;
+		height: auto;
+	}
 </style>
