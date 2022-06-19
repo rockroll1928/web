@@ -35,6 +35,7 @@
     width: 100vw;
     bottom: 15%;
     overflow: auto;
+    z-index:100;
   }
   .locations {
     display: flex;

@@ -36,6 +36,7 @@
     padding: 1rem;
     border-radius: 0.25rem;
     width: 13rem;
+    align-self:flex-end;
 
     min-width: 11rem;
     cursor: pointer;
