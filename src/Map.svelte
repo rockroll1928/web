@@ -136,7 +136,7 @@
         break;
       case "pin":
         infowindow = new google.maps.InfoWindow({
-          content: "Not yet.",
+          content: InfoContent.infoContent(pin.options),
         });
         break;
       default:
@@ -203,8 +203,26 @@
 
   function onReportsButtonClick({ iconType }) {
     let pos = map.getCenter();
-    let pinObject = { lat: pos.lat(), lon: pos.lng(), iconType:iconMapping.translateIcon(iconType) };
-    createMapMarker(pinObject, "pin");
+    
+    let pin = {
+        latitude: pos.lat(),
+        longitude: pos.lng(),
+        type: iconType
+      }
+
+    pinService.savePin(pin).then((response) => {
+      console.log(response);
+      let pinObject = { 
+        lat: response.latitude, 
+        lon: response.longitude, 
+        iconType:iconMapping.translateIcon(response.iconType), 
+        options: response.options 
+      }
+      createMapMarker(pinObject, "pin");
+    })
+    
+    //let pinObject = { lat: pos.lat(), lon: pos.lng(), iconType:iconMapping.translateIcon(iconType) };
+    //createMapMarker(pinObject, "pin");
     isReportsOpen = false;
   }
 </script>
