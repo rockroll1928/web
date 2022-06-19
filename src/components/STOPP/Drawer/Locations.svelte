@@ -8,7 +8,8 @@
   const disableDefaultUI = createEventDispatcher();
 
   onMount(() => {
-    getParking().then((p) => (locations = p.slice(4, 18)));
+    
+    getParking(type).then((p) => (locations = p.slice(4, 18)));
     console.log(locations);
   });
 </script>
