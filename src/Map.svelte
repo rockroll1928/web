@@ -10,6 +10,7 @@
   import ReportsModal from "./components/PIN/ReportsModal/ReportsModal.svelte";
   import { currentLocation } from "./components/Store/Stores.js";
   import { centerOnPosition } from "./components/Store/Stores.js";
+  import iconMapping from "./utility/IconMapping";
 
   const infoService = new InfoService();
   const pinService = new PinService();
@@ -199,6 +200,13 @@
     );
     console.log("id", id);
   };
+
+  function onReportsButtonClick({ iconType }) {
+    let pos = map.getCenter();
+    let pinObject = { lat: pos.lat(), lon: pos.lng(), iconType:iconMapping.translateIcon(iconType) };
+    createMapMarker(pinObject, "pin");
+    isReportsOpen = false;
+  }
 </script>
 
 <div class="logo">
@@ -221,6 +229,7 @@
     on:menu-button-click={() => {
       isReportsOpen = !isReportsOpen;
     }}
+    on:report-button-click={(e) => onReportsButtonClick(e)}
   />
 </div>
 <div class="center-buttons">
@@ -246,7 +255,10 @@
 <Drawer open={isStopsOpen} on:on-drawer-close={() => (isStopsOpen = false)} />
 
 {#if isReportsOpen}
-  <ReportsModal on:close-reports-modal={() => (isReportsOpen = false)} />
+  <ReportsModal
+    on:close-reports-modal={() => (isReportsOpen = false)}
+    on:report-button-click={(e) => onReportsButtonClick(e.detail)}
+  />
 {/if}
 
 <style>

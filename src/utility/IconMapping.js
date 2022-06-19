@@ -19,6 +19,8 @@ IconMapping.translateIcon = function(iconType) {
 		case 'ferryDepartureOnSchedule':
 		case 'ferryServiceNotOperating':
 			return 'ferry';
+		case 'obstacle':
+			return 'obstacle';
 		default: return 'message';
 	}
 }
