@@ -7,7 +7,10 @@
   import Drawer from "./components/STOPP/Drawer/Drawer.svelte";
   import InfoContent from "./components/INFO/InfoContent";
   import { format, formatDistance, formatRelative, subDays } from "date-fns";
-  import { currentLocation } from "./components/Store/Stores.js";
+  import {
+    centerOnPosition,
+    currentLocation,
+  } from "./components/Store/Stores.js";
 
   const infoService = new InfoService();
   const pinService = new PinService();
@@ -44,28 +47,29 @@
     });
 
     currentLocation.subscribe((pos) => {
-      console.log("pos", pos);
-      map.panTo(pos);
-      centerMarker?.setMap(null);
-      centerMarker = new google.maps.Marker({
-        position: pos,
-        map: map,
-        title: "Your position",
-        icon: "/assets/myposition.svg",
-      });
-      getRelevantPins(pos);
+      if ($centerOnPosition) {
+        map.panTo(pos);
+        centerMarker?.setMap(null);
+        centerMarker = new google.maps.Marker({
+          position: pos,
+          map: map,
+          title: "Your position",
+          icon: "/assets/myposition.svg",
+        });
+        getRelevantPins(pos);
+      }
     });
 
     watchPosition();
 
     map.addListener("dragstart", () => {
-      navigator.geolocation.clearWatch(id);
+      $centerOnPosition = false;
     });
 
     document.onkeydown = (event) => {
       switch (event.key) {
         case "ArrowUp":
-          navigator.geolocation.clearWatch(id);
+          $centerOnPosition = false;
           let _pos;
           currentLocation.subscribe((pos) => {
             _pos = pos;
@@ -81,6 +85,10 @@
           break;
       }
     };
+
+    const interval = setInterval(() => {
+      date = new Date();
+    }, 1000);
 
     /*
     google.maps.event.addListener(map, "click", function (event) {
@@ -148,25 +156,6 @@
     return marker;
   };
 
-  const watchPosition = () => {
-    const navGeoLocSuccess = (pos) => {
-      const crd = pos.coords;
-      currentLocation.update(() => ({
-        lat: crd.latitude,
-        lng: crd.longitude,
-      }));
-    };
-
-    function navGeoLocError(err) {
-      console.warn("ERROR(" + err.code + "): " + err.message);
-    }
-    id = navigator.geolocation.watchPosition(
-      navGeoLocSuccess,
-      navGeoLocError,
-      options
-    );
-  };
-
   const getRelevantPins = (pos) => {
     Promise.all([infoService.getPinList(pos), pinService.getPinList()]).then(
       ([infoPinList, ugcPinList]) => {
@@ -177,11 +166,35 @@
     );
   };
 
-  onMount(() => {
-    const interval = setInterval(() => {
-      date = new Date();
-    }, 1000);
-  });
+  const handleCenterOnPosition = () => {
+    let _pos;
+    currentLocation.subscribe((pos) => {
+      _pos = pos;
+    });
+    map.panTo(_pos);
+    map.setZoom(15);
+    $centerOnPosition = true;
+  };
+
+  const watchPosition = () => {
+    const navGeoLocSuccess = (pos) => {
+      const crd = pos.coords;
+      currentLocation.update(() => ({
+        lat: crd.latitude,
+        lng: crd.longitude,
+      }));
+    };
+
+    const navGeoLocError = (err) => {
+      console.warn("ERROR(" + err.code + "): " + err.message);
+    };
+    id = navigator.geolocation.watchPosition(
+      navGeoLocSuccess,
+      navGeoLocError,
+      options
+    );
+    console.log("id", id);
+  };
 </script>
 
 <div class="clock">
@@ -211,7 +224,7 @@
     alt="centerposition"
     src="/assets/centerlocation.svg"
     on:menu-button-click={() => {
-      watchPosition();
+      handleCenterOnPosition();
     }}
   />
 </div>
@@ -252,7 +265,7 @@
     position: fixed;
     align-items: center;
     font-family: monospace;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.7);
     font-size: 1.7981375rem;
     padding: 1.1875rem 1.8125rem;
     border-radius: calc(1.7981375rem + 1.1875rem);
