@@ -5,14 +5,11 @@
 
     export let logo;
     export let text;
-    export let name;
+    export let iconType;
 
-    function chooseReport() {
-        dispatch('choose-report', name);
-    }
 </script>
 
-<button on:click="{chooseReport}">
+<button on:click={() => dispatch("report-button-click", {iconType})}>
     <img src="/assets/reports/{logo}.svg" alt={logo}/>
     <h3>{text}</h3>
 </button>

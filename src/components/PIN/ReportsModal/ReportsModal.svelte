@@ -3,8 +3,8 @@
     import { createEventDispatcher } from 'svelte';	
     const dispatch = createEventDispatcher();
 	
-    let hazards = [ {src: "Hazard", text: "Hazard"}, {src: "Hazard_OnRoad", text: "On Road"}, {src: "Hazard_Weather", text: "Weather"}, {src: "Hazard_Shoulder", text: "Shoulder"}];
-    let police = [ {src:"Police", text: "Police"},{src:"Police_Onroad", text: "On Road"}, {src:"Police_Hidden", text:"Hidden"}, {src:"Police_Visible", text: "Visible"}];
+    let hazards = [ {src: "Hazard", text: "Hazard", icon: "obstacle"}, {src: "Hazard_OnRoad", text: "On Road", icon: "obstacle"}, {src: "Hazard_Weather", text: "Weather", icon: "obstacle"}, {src: "Hazard_Shoulder", text: "Shoulder", icon: "obstacle"}];
+    let police = [ {src:"Police", text: "Police", icon: "police"},{src:"Police_Onroad", text: "On Road", icon: "police"}, {src:"Police_Hidden", text:"Hidden", icon: "police"}, {src:"Police_Visible", text: "Visible", icon: "police"}];
     let reports = [ hazards, police ];
 
     function closeModal() {
@@ -20,7 +20,7 @@
         {#each reports as report}
         <div class="row">
             {#each report as reportItem}
-            <ReportLogo logo={reportItem.src} text={reportItem.text}/>
+            <ReportLogo logo={reportItem.src} text={reportItem.text} iconType={reportItem.icon} on:report-button-click={(e) => dispatch("report-button-click", e.detail)}/>
             {/each}
         </div>
     {/each}
