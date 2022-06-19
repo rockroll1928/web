@@ -10,31 +10,40 @@
   import GasstationButton from "../GasstationButton/GasstationButton.svelte";
   export let open = false;
   export let openParkingButton = false;
+  $: choice = "";
   const dispatch = createEventDispatcher();
-  const openP = () => {
+  const openP = (e) => {
     openParkingButton = true;
     console.log(openParkingButton);
+    choice = e.target.closest("div").id
   };
+
 </script>
 
 <Drawer
   {open}
   size="50%"
   placement="right"
-  on:clickAway={() => dispatch("on-drawer-close")}
+  on:clickAway={() => {
+    // dispatch("on-drawer-close");
+    openParkingButton = false;
+  }}
 >
   <div class="content">
+    <div on:click={openP} id="restroom">
     <RestroomButton />
-    <div on:click={openP}>
+  </div>
+    <div on:click={openP} id="parking">
       <ParkingButton />
     </div>
+    <div on:click={openP} id="gasstation">
     <GasstationButton />
+  </div>
   </div>
 </Drawer>
 
-<Locations
-  open={openParkingButton && open}
-  on:clickAway={() => dispatch("on-drawer-close")}
+<Locations type={choice}
+  open={openParkingButton}
 />
 
 <style>

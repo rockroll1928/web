@@ -1,6 +1,6 @@
 
- export async function getParking() {
-    let url = 'https://europe-west1-bootcamp222.cloudfunctions.net/stops-service/api/poi?category=parking';
+ export async function getParking(category, lat, lon) {
+    let url = `https://europe-west1-bootcamp222.cloudfunctions.net/stops-service/api/poi?category=${category}`;
     try {
         let res = await fetch(url);
         return await res.json();
