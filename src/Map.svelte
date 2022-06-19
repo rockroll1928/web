@@ -5,7 +5,7 @@
   import { translateIcon } from "./utility/IconMapping";
   import Drawer from "./components/STOPP/Drawer/Drawer.svelte";
   import  openModal from "./components/INFO/InfoOverlay.svelte";
-
+  import ReportsModal from "./components/PIN/ReportsModal/ReportsModal.svelte";
   import { currentLocation } from "./components/Store/Stores.js";
 
   const infoService = new InfoService();
@@ -24,6 +24,7 @@
   };
   let relevantPins = [];
   $: isStopsOpen = false;
+ let isReportsOpen = false;
 
   onMount(async () => {
     map = new google.maps.Map(container, {
@@ -153,7 +154,7 @@
     src="/assets/Search.svg"
     on:menu-button-click={() => alert("Traffic accident message")}
   />
-  <MenuButton alt="pin" src="/assets/Pin.svg" on:menu-button-click={() => alert("Traffic accident message")} />
+  <MenuButton alt="pin" src="/assets/Pin.svg" on:menu-button-click={() =>  {isReportsOpen = !isReportsOpen; }} />
   <MenuButton
     alt="coffee"
     src="/assets/Coffee.svg"
@@ -163,6 +164,10 @@
   />
 </div>
 <Drawer open={isStopsOpen} on:on-drawer-close={() => (isStopsOpen = false)} />
+
+{#if isReportsOpen} 
+  <ReportsModal />
+{/if}
 
 <style>
   .full-screen {
