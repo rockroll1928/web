@@ -7,7 +7,6 @@
   import Drawer from "./components/STOPP/Drawer/Drawer.svelte";
   import InfoContent from "./components/INFO/InfoContent";
   import { format, formatDistance, formatRelative, subDays } from "date-fns";
-  import  openModal from "./components/INFO/InfoOverlay.svelte";
   import ReportsModal from "./components/PIN/ReportsModal/ReportsModal.svelte";
   import { currentLocation } from "./components/Store/Stores.js";
 
@@ -32,7 +31,7 @@
   $: time = format(date, "HH:mm");
  let isReportsOpen = false;
 
-  onMount(async () => {
+   onMount(async () => {
     map = new google.maps.Map(container, {
       zoom,
       disableDefaultUI: true,
@@ -222,7 +221,7 @@
 <Drawer open={isStopsOpen} on:on-drawer-close={() => (isStopsOpen = false)} />
 
 {#if isReportsOpen} 
-  <ReportsModal />
+  <ReportsModal on:close-reports-modal={() => (isReportsOpen = false)} />
 {/if}
 
 <style>

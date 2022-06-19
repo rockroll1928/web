@@ -5,9 +5,10 @@
 
     export let logo;
     export let text;
+    export let name;
 
     function chooseReport() {
-        dispatch('choose-report');
+        dispatch('choose-report', name);
     }
 </script>
 
