@@ -272,7 +272,8 @@
     position: fixed;
     align-items: center;
     font-family: monospace;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
+		backdrop-filter: blur(1rem);
     font-size: 1.7981375rem;
     padding: 1.1875rem 1.8125rem;
     border-radius: calc(1.7981375rem + 1.1875rem);
