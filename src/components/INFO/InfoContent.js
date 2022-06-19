@@ -6,7 +6,10 @@ InfoContent.infoContent = function(options = { iconType: 'ferry' }) {
     return '<div class="contentPopup">' +
     '<div class="contentPopup-Flex">' +
     `<img class="contentPopup-Pin" src="assets/pins/${translateIcon(options.iconType)}.svg"/>`+
+    '<div>' +
 		'<h1 class="contentPopup-Heading">'+options.iconType+'</h1>' +
+    `<p class="contentPopup-Date">${options.startTime} - ${options.endTime}</p>` +
+    '</div>' +
     '</div>' +
     `<p>${options?.message}</p>` +
     "</div>";

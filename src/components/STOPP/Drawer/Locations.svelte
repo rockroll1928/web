@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher, onMount } from "svelte";
   import { getParking } from "../../ParkingList/getParking";
+  import { currentLocation } from "../../Store/Stores";
   import SingleLocation from "../SingleLocation.svelte";
   export let open = true;
   export let type = "";
@@ -8,10 +9,11 @@
   $: locations = [];
   const disableDefaultUI = createEventDispatcher();
 
-  onMount(() => {
-    getParking(type).then((p) => (locations = p.slice(4, 18)));
-    console.log(locations);
-  });
+  $: {
+    const pos = $currentLocation
+    console.log('pos',pos)
+    getParking(type, pos.lat, pos.lng).then((p) => (locations = p.slice(4, 18)));
+  }
 </script>
 
 {#if open}
@@ -35,7 +37,7 @@
     width: 100vw;
     bottom: 15%;
     overflow: auto;
-    z-index:100;
+    z-index: 100;
   }
   .locations {
     display: flex;
