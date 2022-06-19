@@ -8,7 +8,8 @@
   const disableDefaultUI = createEventDispatcher();
 
   onMount(() => {
-    getParking().then((p) => (locations = p.slice(4, 18)));
+    
+    getParking(type).then((p) => (locations = p.slice(4, 18)));
     console.log(locations);
   });
 </script>
@@ -28,7 +29,7 @@
     padding: 2rem 0;
     position: absolute;
     width: 100vw;
-    bottom: 20%;
+    bottom: 15%;
     overflow: auto;
   }
   .locations {
