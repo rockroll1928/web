@@ -67,17 +67,89 @@
     });
 
     document.onkeydown = (event) => {
+      let _pos;
       switch (event.key) {
         case "ArrowUp":
           $centerOnPosition = false;
-          let _pos;
           currentLocation.subscribe((pos) => {
             _pos = pos;
           });
+          console.log("pos go up", _pos);
           currentLocation.update(() => ({
             lat: _pos.lat + 0.001,
             lng: _pos.lng,
           }));
+          map.panTo(_pos);
+          centerMarker?.setMap(null);
+          centerMarker = new google.maps.Marker({
+            position: _pos,
+            map: map,
+            title: "Your position",
+            icon: "/assets/myposition.svg",
+          });
+
+          break;
+
+        case "ArrowDown":
+          $centerOnPosition = false;
+          currentLocation.subscribe((pos) => {
+            _pos = pos;
+          });
+          console.log("pos go down", _pos);
+          currentLocation.update(() => ({
+            lat: _pos.lat - 0.001,
+            lng: _pos.lng,
+          }));
+          map.panTo(_pos);
+          centerMarker?.setMap(null);
+          centerMarker = new google.maps.Marker({
+            position: _pos,
+            map: map,
+            title: "Your position",
+            icon: "/assets/myposition.svg",
+          });
+
+          break;
+
+        case "ArrowLeft":
+          $centerOnPosition = false;
+          currentLocation.subscribe((pos) => {
+            _pos = pos;
+          });
+          console.log("pos go left", _pos);
+          currentLocation.update(() => ({
+            lat: _pos.lat,
+            lng: _pos.lng - 0.001,
+          }));
+          map.panTo(_pos);
+          centerMarker?.setMap(null);
+          centerMarker = new google.maps.Marker({
+            position: _pos,
+            map: map,
+            title: "Your position",
+            icon: "/assets/myposition.svg",
+          });
+
+          break;
+
+        case "ArrowRight":
+          $centerOnPosition = false;
+          currentLocation.subscribe((pos) => {
+            _pos = pos;
+          });
+          console.log("pos go right", _pos);
+          currentLocation.update(() => ({
+            lat: _pos.lat,
+            lng: _pos.lng + 0.001,
+          }));
+          map.panTo(_pos);
+          centerMarker?.setMap(null);
+          centerMarker = new google.maps.Marker({
+            position: _pos,
+            map: map,
+            title: "Your position",
+            icon: "/assets/myposition.svg",
+          });
 
           break;
 
