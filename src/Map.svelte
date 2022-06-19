@@ -153,9 +153,9 @@
       });
     });
 
-    google.maps.event.addListener(map, "click", function(event) {
-    infowindow.close();
-});
+    google.maps.event.addListener(map, "click", function (event) {
+      infowindow.close();
+    });
 
     return marker;
   };
@@ -217,6 +217,7 @@
   <MenuButton
     alt="pin"
     src="/assets/addpin.svg"
+    imgstyles="width: 80px;"
     on:menu-button-click={() => {
       isReportsOpen = !isReportsOpen;
     }}
@@ -236,6 +237,7 @@
   <MenuButton
     alt="centerposition"
     src="/assets/centerlocation.svg"
+    imgstyles="width: 80px;"
     on:menu-button-click={() => {
       handleCenterOnPosition();
     }}
@@ -264,7 +266,7 @@
   .lower-left-buttons {
     z-index: 2;
     position: absolute;
-    left: 60px;
+    left: 94px;
     transform: translateX(-50%);
     bottom: 30px;
   }
@@ -302,7 +304,7 @@
   }
 
   .logo > img {
-    width: 9rem;
+    width: 10rem;
     height: auto;
   }
 </style>
