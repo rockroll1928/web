@@ -9,9 +9,7 @@
   import { format, formatDistance, formatRelative, subDays } from "date-fns";
   import ReportsModal from "./components/PIN/ReportsModal/ReportsModal.svelte";
   import { currentLocation } from "./components/Store/Stores.js";
-  import {
-    centerOnPosition,
-  } from "./components/Store/Stores.js";
+  import { centerOnPosition } from "./components/Store/Stores.js";
 
   const infoService = new InfoService();
   const pinService = new PinService();
@@ -32,9 +30,9 @@
   $: isStopsOpen = false;
   let date = new Date();
   $: time = format(date, "HH:mm");
- let isReportsOpen = false;
+  let isReportsOpen = false;
 
-   onMount(async () => {
+  onMount(async () => {
     map = new google.maps.Map(container, {
       zoom,
       disableDefaultUI: true,
@@ -197,6 +195,24 @@
     );
     console.log("id", id);
   };
+
+  async function onReportsButtonClick({ iconType }) {
+    let pos = map.getCenter();
+    let pinObject = {
+      latitude: pos.lat(),
+      longitude: pos.lng(),
+      type: iconType,
+    };
+ 
+    pinService.savePin(pinObject).then((response) => {
+      if(!response.data) return;
+
+      //createMapMarker(response, "pin");
+       //isReportsOpen = false;
+      console.log(response);
+   
+    });
+  }
 </script>
 
 <div class="clock">
@@ -212,7 +228,13 @@
   />
 </div>
 <div class="center-buttons">
-  <MenuButton alt="pin" src="/assets/Pin.svg" on:menu-button-click={() =>  {isReportsOpen = !isReportsOpen; }} />
+  <MenuButton
+    alt="pin"
+    src="/assets/Pin.svg"
+    on:menu-button-click={() => {
+      isReportsOpen = !isReportsOpen;
+    }}
+  />
   <MenuButton
     alt="coffee"
     src="/assets/stops.svg"
@@ -233,8 +255,11 @@
 </div>
 <Drawer open={isStopsOpen} on:on-drawer-close={() => (isStopsOpen = false)} />
 
-{#if isReportsOpen} 
-  <ReportsModal on:close-reports-modal={() => (isReportsOpen = false)} />
+{#if isReportsOpen}
+  <ReportsModal
+    on:close-reports-modal={() => (isReportsOpen = false)}
+    on:report-button-click={(e) => onReportsButtonClick(e.detail)}
+  />
 {/if}
 
 <style>
