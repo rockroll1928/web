@@ -54,6 +54,7 @@
   :global(.drawer .panel) {
     background: transparent !important;
     width: unset !important;
+    display:flex;
   }
   .close {
     display: block;
@@ -75,9 +76,9 @@
     justify-content: flex-end;
     flex-direction: column;
     width: fit-content;
-    justify-content: -end;
     padding: 3rem;
     gap: 1rem;
+    justify-content: center;
   }
 
   .items {
