@@ -23,8 +23,8 @@
       <span class="closed">Closed</span>
     {/if}
     {#if expanded}
-      <div>
-        <pre>{JSON.stringify(location, null, 2)}</pre>
+      <div className="image-wrapper">
+       <img src="https://www.priorityvillas.com/rentals/fotos/2/149466985749e65c59c8a0c676cd673069837a1faf/149466985724e5dcd28eb02c0d393bd6d0527144b9.jpg" alt="parking"/>
       </div>
     {/if}
   </div>
@@ -57,5 +57,13 @@
 
     /* warning - FUnctional */
     color: #c4001a;
+  }
+  .image-wrapper{
+    width: 100%;
+
+  }
+  img{
+    width: 100%;
+    object-fit: cover;
   }
 </style>
