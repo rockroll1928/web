@@ -22,6 +22,9 @@
     {#if location.open_now}
       <span class="closed">Closed</span>
     {/if}
+    {#if !location.open_now}
+      <span class="closed aft" />
+    {/if}
     {#if expanded}
       <div className="image-wrapper">
         <img
@@ -34,6 +37,9 @@
 {/if}
 
 <style>
+  .aft {
+    content: "";
+  }
   .location {
     background-color: white;
     padding: 1rem;
@@ -44,7 +50,7 @@
     min-width: 11rem;
     cursor: pointer;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
   }
   .location.expanded {
     height: 20rem;
