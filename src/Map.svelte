@@ -212,7 +212,7 @@
 <div class="center-buttons">
   <MenuButton
     alt="coffee"
-    src="/assets/stops.svg"
+    src={`/assets/${isStopsOpen ? "closestops" : "stops"}.svg`}
     imgstyles="width: 100px;"
     on:menu-button-click={() => {
       isStopsOpen = true;

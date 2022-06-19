@@ -1,0 +1,30 @@
+<svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_b_1135_1223)">
+<rect width="140" height="140" rx="70" fill="#004F9B"/>
+<g filter="url(#filter1_b_1135_1223)">
+<rect x="16.333" y="16.3333" width="106.489" height="106.636" rx="53.2447" fill="white" fill-opacity="0.9"/>
+<g clip-path="url(#clip0_1135_1223)">
+<path d="M47.3787 92.6205C34.8852 80.127 34.8852 59.8711 47.3787 47.3775C59.8722 34.884 80.1282 34.884 92.6217 47.3775C105.115 59.8711 105.115 80.127 92.6217 92.6205C80.1282 105.114 59.8722 105.114 47.3787 92.6205Z" stroke="#141414" stroke-width="2.48479" stroke-linecap="round"/>
+<path d="M81.8486 58.1511L58.1499 81.8498" stroke="#141414" stroke-width="2.48479" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M81.8496 81.8494L58.1509 58.1507" stroke="#141414" stroke-width="2.48479" stroke-miterlimit="10" stroke-linecap="round"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_b_1135_1223" x="-21.7778" y="-21.7778" width="183.556" height="183.556" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feGaussianBlur in="BackgroundImage" stdDeviation="10.8889"/>
+<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_1135_1223"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_1135_1223" result="shape"/>
+</filter>
+<filter id="filter1_b_1135_1223" x="1.66634" y="1.66658" width="135.823" height="135.969" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feGaussianBlur in="BackgroundImage" stdDeviation="7.33333"/>
+<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_1135_1223"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_1135_1223" result="shape"/>
+</filter>
+<clipPath id="clip0_1135_1223">
+<rect width="66.468" height="66.468" fill="white" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 117 70)"/>
+</clipPath>
+</defs>
+</svg>
