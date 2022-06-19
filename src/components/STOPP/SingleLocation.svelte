@@ -23,7 +23,7 @@
       <span class="closed">Closed</span>
     {/if}
     {#if !location.open_now}
-      <span class="closed aft" />
+      <span class="closed" style="color:green">Open</span>
     {/if}
     {#if expanded}
       <div className="image-wrapper">
