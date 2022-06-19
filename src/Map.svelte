@@ -153,6 +153,10 @@
       });
     });
 
+    google.maps.event.addListener(map, "click", function(event) {
+    infowindow.close();
+});
+
     return marker;
   };
 
@@ -215,6 +219,13 @@
   }
 </script>
 
+<div class="logo">
+  <img
+    src="./assets/sogeti-trucks.svg"
+    alt="Sogeti Trucks – Part of Capgemini"
+  />
+</div>
+
 <div class="clock">
   {time}
 </div>
@@ -224,7 +235,9 @@
   <MenuButton
     alt="pin"
     src="/assets/addpin.svg"
-    on:menu-button-click={() => alert("Traffic accident message")}
+    on:menu-button-click={() => {
+      isReportsOpen = !isReportsOpen;
+    }}
   />
 </div>
 <div class="center-buttons">
@@ -237,7 +250,7 @@
   />
   <MenuButton
     alt="coffee"
-    src="/assets/stops.svg"
+    src={`/assets/${isStopsOpen ? "closestops" : "stops"}.svg`}
     imgstyles="width: 100px;"
     on:menu-button-click={() => {
       isStopsOpen = true;
@@ -297,11 +310,27 @@
     position: fixed;
     align-items: center;
     font-family: monospace;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
     font-size: 1.7981375rem;
     padding: 1.1875rem 1.8125rem;
     border-radius: calc(1.7981375rem + 1.1875rem);
     right: 0;
     margin: 1.5rem;
+  }
+
+  .logo {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: calc(1.7981375rem + 1.1875rem);
+    left: 0;
+    margin: 1.5rem;
+    padding: 1.25rem;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+  }
+
+  .logo > img {
+    width: 9rem;
+    height: auto;
   }
 </style>
