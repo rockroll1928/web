@@ -10,7 +10,7 @@
   import { currentLocation } from "./components/Store/Stores.js";
 
   const infoService = new InfoService();
-	const pinService = new PinService();
+  const pinService = new PinService();
   let container;
   /**
    * @type {google.maps.Map}
@@ -106,19 +106,19 @@
       }
     };
 */
-	});
+  });
 
-	const createMapMarker = (pin, source) => {
-		const marker = new google.maps.Marker({
-			position: new google.maps.LatLng(pin.lat, pin.lon),
+  const createMapMarker = (pin, source) => {
+    const marker = new google.maps.Marker({
+      position: new google.maps.LatLng(pin.lat, pin.lon),
       icon: `./assets/pins/${translateIcon(pin.iconType)}.svg`,
-			map: map
-		});
-		marker._source = source;
-		marker._pin = pin;
-		// add click listener here.
-		return marker;
-	}
+      map: map,
+    });
+    marker._source = source;
+    marker._pin = pin;
+    // add click listener here.
+    return marker;
+  };
 
   const watchPosition = () => {
     const navGeoLocSuccess = (pos) => {
@@ -140,12 +140,13 @@
   };
 
   const getRelevantPins = (pos) => {
-		Promise.all([
-			infoService.getPinList(pos),
-			pinService.getPinList()
-		]).then(([infoPinList, ugcPinList]) => {
-			relevantPins = infoPinList.map((pin) => createMapMarker(pin, 'info')).concat(ugcPinList.map((pin) => createMapMarker(pin, 'pin')));
-		});
+    Promise.all([infoService.getPinList(pos), pinService.getPinList()]).then(
+      ([infoPinList, ugcPinList]) => {
+        relevantPins = infoPinList
+          .map((pin) => createMapMarker(pin, "info"))
+          .concat(ugcPinList.map((pin) => createMapMarker(pin, "pin")));
+      }
+    );
   };
 </script>
 
@@ -157,10 +158,11 @@
     on:menu-button-click={() => alert("Traffic accident message")}
   />
 </div>
-<div class="menu-buttons">
+<div class="center-buttons">
   <MenuButton
     alt="coffee"
     src="/assets/stops.svg"
+    imgstyles="width: 100px;"
     on:menu-button-click={() => {
       isStopsOpen = true;
     }}
@@ -183,13 +185,14 @@
     height: 100vh;
   }
 
-  .menu-buttons {
+  .center-buttons {
     z-index: 2;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     bottom: 5%;
   }
+
   .lower-left-buttons {
     z-index: 2;
     position: absolute;

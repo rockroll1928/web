@@ -3,13 +3,13 @@
 
   export let src = "";
   export let alt = "";
+  export let imgstyles = "";
 
   let dispatch = createEventDispatcher();
-
 </script>
 
 <button on:click={() => dispatch("menu-button-click")}>
-  <img src={src} alt={alt} />
+  <img {src} {alt} style={imgstyles} />
 </button>
 
 <style>
@@ -18,7 +18,7 @@
     background-color: transparent;
     cursor: pointer;
   }
-  img{
+  img {
     width: clamp(10px, 20vw, 50px);
   }
 </style>
