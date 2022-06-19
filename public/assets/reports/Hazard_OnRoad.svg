@@ -1,0 +1,34 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_b_988_8091)">
+<rect width="120" height="120" rx="60" fill="#F7D302"/>
+<g filter="url(#filter1_b_988_8091)">
+<rect x="15" y="15" width="90" height="90" rx="45" fill="white" fill-opacity="0.9"/>
+<g clip-path="url(#clip0_988_8091)">
+<path d="M85.5003 77.8268H34.002" stroke="#141414" stroke-width="2.0042" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M54.1547 42.0032L36.2422 77.8282" stroke="#141414" stroke-width="2.0042" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M65.3501 42.0032L83.2624 77.8282" stroke="#141414" stroke-width="2.0042" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M59.751 55.4353V59.9135" stroke="#141414" stroke-width="2.0042" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M59.751 47.6003V49.8394" stroke="#141414" stroke-width="2.0042" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M59.751 42.0032V43.1227" stroke="#141414" stroke-width="2.0042" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M59.751 65.5131V72.2303" stroke="#141414" stroke-width="2.0042" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_b_988_8091" x="-21.7778" y="-21.7778" width="163.556" height="163.556" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feGaussianBlur in="BackgroundImage" stdDeviation="10.8889"/>
+<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_988_8091"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_988_8091" result="shape"/>
+</filter>
+<filter id="filter1_b_988_8091" x="-5" y="-5" width="130" height="130" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feGaussianBlur in="BackgroundImage" stdDeviation="10"/>
+<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_988_8091"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_988_8091" result="shape"/>
+</filter>
+<clipPath id="clip0_988_8091">
+<rect width="53.6123" height="38.0798" fill="white" transform="translate(33 41)"/>
+</clipPath>
+</defs>
+</svg>

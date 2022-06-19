@@ -7,6 +7,8 @@
   import Drawer from "./components/STOPP/Drawer/Drawer.svelte";
   import InfoContent from "./components/INFO/InfoContent";
   import { format, formatDistance, formatRelative, subDays } from "date-fns";
+  import  openModal from "./components/INFO/InfoOverlay.svelte";
+  import ReportsModal from "./components/PIN/ReportsModal/ReportsModal.svelte";
   import { currentLocation } from "./components/Store/Stores.js";
 
   const infoService = new InfoService();
@@ -28,6 +30,7 @@
   $: isStopsOpen = false;
   let date = new Date();
   $: time = format(date, "HH:mm");
+ let isReportsOpen = false;
 
   onMount(async () => {
     map = new google.maps.Map(container, {
@@ -197,6 +200,7 @@
   />
 </div>
 <div class="center-buttons">
+  <MenuButton alt="pin" src="/assets/Pin.svg" on:menu-button-click={() =>  {isReportsOpen = !isReportsOpen; }} />
   <MenuButton
     alt="coffee"
     src="/assets/stops.svg"
@@ -216,6 +220,10 @@
   />
 </div>
 <Drawer open={isStopsOpen} on:on-drawer-close={() => (isStopsOpen = false)} />
+
+{#if isReportsOpen} 
+  <ReportsModal />
+{/if}
 
 <style>
   .full-screen {
